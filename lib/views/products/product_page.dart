@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ma_for_feip/extensions/cost.dart';
 import 'package:ma_for_feip/models/products/product.dart';
+import 'package:ma_for_feip/models/size.dart';
+import 'package:ma_for_feip/providers/product_page/product_page_provider.dart';
 
 class ProductPage extends StatelessWidget {
-  final Product product;
-
-  const ProductPage({Key? key, required this.product}) : super(key: key);
+  const ProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,111 +58,116 @@ class ProductPage extends StatelessWidget {
   }
 
   Widget _scrollableContent(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: ListView(
-        children: [
-          const SizedBox(
-            width: double.infinity,
-            height: 500,
-            child: Placeholder(),
-          ),
-          _bodyDivider(),
-          SizedBox(
-            height: 25,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (BuildContext context, int index) {
-                final tag = product.tags[index];
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: Colors.black12,
-                      width: 1,
-                    ),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  child: Text(
-                    tag,
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 8),
-              itemCount: product.tags.length,
-            ),
-          ),
-          _bodyDivider(),
-          Text(
-            product.name,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          _bodyDivider(),
-          Row(
-            children: [
-              Text(
-                product.cost.getSpacingString(),
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                product.oldCost.getSpacingString(),
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.grey,
-                      decoration: TextDecoration.lineThrough,
-                    ),
-              ),
-            ],
-          ),
-          _bodyDivider(),
-          ..._colorPicker(context),
-          _bodyDivider(),
-          ..._sizePicker(context),
-          _bodyDivider(),
-          InkWell(
-            onTap: () {
-              /* Open dialog with table */
-            },
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
+    return BlocSelector<ProductPageProvider, ProductPageState, Product>(
+        selector: (state) => state.product,
+        builder: (context, prod) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: ListView(
               children: [
-                const Icon(Icons.straighten),
-                const SizedBox(width: 8),
-                Text(
-                  'Таблица размеров',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Colors.grey,
-                        decoration: TextDecoration.underline,
-                      ),
+                const SizedBox(
+                  width: double.infinity,
+                  height: 500,
+                  child: Placeholder(),
                 ),
+                _bodyDivider(),
+                SizedBox(
+                  height: 25,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      final tag = prod.tags[index];
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: Colors.black12,
+                            width: 1,
+                          ),
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        child: Text(
+                          tag,
+                          style: Theme.of(context).textTheme.labelMedium,
+                        ),
+                      );
+                    },
+                    separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 8),
+                    itemCount: prod.tags.length,
+                  ),
+                ),
+                _bodyDivider(),
+                Text(
+                  prod.name,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                _bodyDivider(),
+                Row(
+                  children: [
+                    Text(
+                      prod.cost.getSpacingString(),
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                    ),
+                    const SizedBox(width: 8),
+                    if (prod.oldCost != null)
+                      Text(
+                        prod.oldCost!.getSpacingString(),
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.grey,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                      ),
+                  ],
+                ),
+                _bodyDivider(),
+                ..._colorPicker(context, prod.colors),
+                _bodyDivider(),
+                ..._sizePicker(context, prod.sizes),
+                _bodyDivider(),
+                InkWell(
+                  onTap: () {
+                    /* Open dialog with table */
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.straighten),
+                      const SizedBox(width: 8),
+                      Text(
+                        'Таблица размеров',
+                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              color: Colors.grey,
+                              decoration: TextDecoration.underline,
+                            ),
+                      ),
+                    ],
+                  ),
+                ),
+                _bodyDivider(),
+                ..._description(context, prod.description),
+                _bodyDivider(),
+                // ignore: prefer_const_constructors
+                Placeholder(
+                  child: const SizedBox(height: 400, child: Center(child: Text('Вам может понравится'))),
+                )
               ],
             ),
-          ),
-          _bodyDivider(),
-          ..._description(context),
-          _bodyDivider(),
-          // ignore: prefer_const_constructors
-          Placeholder(
-            child: const SizedBox(height: 400, child: Center(child: Text('Вам может понравится'))),
-          )
-        ],
-      ),
-    );
+          );
+        });
   }
 
   Widget _bodyDivider() => const SizedBox(height: 16);
 
-  List<Widget> _colorPicker(BuildContext context) {
+  List<Widget> _colorPicker(BuildContext context, List<Color> colors) {
     return [
       Row(
         children: [
@@ -179,38 +185,45 @@ class ProductPage extends StatelessWidget {
       _bodyDivider(),
       SizedBox(
         height: 40,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (BuildContext context, int index) {
-            final color = product.colors[index];
-            return Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                border: Border.all(
-                  color: Colors.grey,
-                  width: 1,
+        child: BlocBuilder<ProductPageProvider, ProductPageState>(
+        () ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int index) {
+              final color = colors[index];
+              return InkWell(
+                onTap: () {
+
+                },
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(60),
+                  ),
+                  padding: const EdgeInsets.all(3),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: color,
+                    ),
+                  ),
                 ),
-                borderRadius: BorderRadius.circular(60),
-              ),
-              padding: const EdgeInsets.all(3),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: color,
-                ),
-              ),
-            );
-          },
-          separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 8),
-          itemCount: product.colors.length,
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 8),
+            itemCount: colors.length,
+          ),
         ),
       )
     ];
   }
 
-  List<Widget> _sizePicker(BuildContext context) {
+  List<Widget> _sizePicker(BuildContext context, List<Size> sizes) {
     return [
       Text(
         'Выберите размер',
@@ -223,7 +236,7 @@ class ProductPage extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           separatorBuilder: (BuildContext context, int index) => _bodyDivider(),
           itemBuilder: (BuildContext context, int index) {
-            final size = product.sizes[index];
+            final size = sizes[index];
             return Card(
               surfaceTintColor: Colors.white,
               elevation: 5,
@@ -241,15 +254,15 @@ class ProductPage extends StatelessWidget {
               ),
             );
           },
-          itemCount: product.sizes.length,
+          itemCount: sizes.length,
         ),
       )
     ];
   }
 
-  List<Widget> _description(BuildContext context) {
+  List<Widget> _description(BuildContext context, List<String> desc) {
     return [
-      for (var d in product.description)
+      for (var d in desc)
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
@@ -279,8 +292,10 @@ class ProductPage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       child: ElevatedButton(
-        style:
-            ElevatedButton.styleFrom(backgroundColor: const Color(0xFF32302F), shape: const RoundedRectangleBorder()),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFF32302F),
+          shape: const RoundedRectangleBorder(),
+        ),
         onPressed: () {
           /* Add product to cart */
         },

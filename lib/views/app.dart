@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ma_for_feip/models/products/product.dart';
 import 'package:ma_for_feip/models/size.dart';
+import 'package:ma_for_feip/providers/product_page/product_page_provider.dart';
 import 'package:ma_for_feip/views/products/product_page.dart';
 
 class App extends StatelessWidget {
@@ -9,15 +11,17 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, primary: Colors.grey),
-          fontFamily: 'Montserrat',
-          useMaterial3: true,
-        ),
-        home: ProductPage(
-          product: productMock,
-        ));
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, primary: Colors.grey),
+        fontFamily: 'Montserrat',
+        useMaterial3: true,
+      ),
+      home: BlocProvider(
+        create: (_) => ProductPageProvider(productMock),
+        child: const ProductPage(),
+      ),
+    );
   }
 }
 

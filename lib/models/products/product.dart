@@ -10,7 +10,7 @@ class Product {
   final List<String> tags;
   final bool isNew;
   final int cost;
-  final int oldCost;
+  final int? oldCost;
   final List<Color> colors;
   final List<Size> sizes;
   final List<String> description;
@@ -21,7 +21,7 @@ class Product {
     required this.tags,
     required this.isNew,
     required this.cost,
-    required this.oldCost,
+    this.oldCost,
     required this.colors,
     required this.sizes,
     required this.description,
