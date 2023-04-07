@@ -1,27 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ma_for_feip/main.dart';
 import 'package:ma_for_feip/models/named_color.dart';
 import 'package:ma_for_feip/models/named_size.dart';
 import 'package:ma_for_feip/models/products/product.dart';
 import 'package:ma_for_feip/providers/product_page/product_page_provider.dart';
 import 'package:ma_for_feip/views/products/product_page.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
 
   @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  bool _readyToWork = false;
+
+  _initializeDependencies(BuildContext context) {
+    appComponent.themeInfo().init(context);
+    setState(() {
+      _readyToWork = true;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (!dependenciesInited) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _initializeDependencies(context));
+      dependenciesInited = true;
+    }
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white, primary: Colors.grey),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.white,
+        ),
         fontFamily: 'Montserrat',
         useMaterial3: true,
       ),
-      home: BlocProvider(
-        create: (_) => ProductPageProvider(productMock),
-        child: const ProductPage(),
-      ),
+      home: _readyToWork
+          ? BlocProvider(
+              create: (_) => ProductPageProvider(productMock),
+              child: ProductPage(),
+            )
+          : Container(),
     );
   }
 }

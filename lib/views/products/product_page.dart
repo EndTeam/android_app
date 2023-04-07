@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ma_for_feip/extensions/cost.dart';
+import 'package:ma_for_feip/main.dart';
 import 'package:ma_for_feip/models/products/product.dart';
 import 'package:ma_for_feip/providers/product_page/product_page_provider.dart';
 import 'package:ma_for_feip/views/widgets/color_picker.dart';
 import 'package:ma_for_feip/views/widgets/size_picker.dart';
 
 class ProductPage extends StatelessWidget {
-  const ProductPage({Key? key}) : super(key: key);
+  final _theme = appComponent.themeInfo();
+
+  ProductPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        actions: _actions(context),
-      ),
       body: Column(
         children: [
           Expanded(child: _scrollableContent(context)),
           Container(
             width: double.infinity,
-            height: 8,
+            height: _theme.verticalPadding,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
@@ -42,34 +41,18 @@ class ProductPage extends StatelessWidget {
     );
   }
 
-  List<Widget> _actions(BuildContext context) {
-    return [
-      IconButton(
-        onPressed: Navigator.of(context).pop,
-        icon: const Icon(Icons.arrow_back),
-      ),
-      const Spacer(),
-      IconButton(
-        onPressed: () {
-          /* Subscribe */
-        },
-        icon: const Icon(Icons.favorite),
-      )
-    ];
-  }
-
   Widget _scrollableContent(BuildContext context) {
     return BlocSelector<ProductPageProvider, ProductPageState, Product>(
         selector: (state) => state.product,
         builder: (context, prod) {
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: EdgeInsets.symmetric(horizontal: _theme.horizontalPadding),
             child: ListView(
               children: [
-                const SizedBox(
+                SizedBox(
                   width: double.infinity,
                   height: 500,
-                  child: Placeholder(),
+                  child: _imageAndNav(context),
                 ),
                 _bodyDivider(),
                 SizedBox(
@@ -80,48 +63,51 @@ class ProductPage extends StatelessWidget {
                       final tag = prod.tags[index];
                       return Container(
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(_theme.mediumRadius),
                           border: Border.all(
                             color: Colors.black12,
                             width: 1,
                           ),
                         ),
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: _theme.horizontalPadding,
+                          vertical: _theme.verticalPadding,
+                        ),
                         child: Text(
                           tag,
-                          style: Theme.of(context).textTheme.labelMedium,
+                          style: _theme.textTheme.labelMedium,
                         ),
                       );
                     },
-                    separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 8),
+                    separatorBuilder: (BuildContext context, int index) => SizedBox(width: _theme.inListSeparator),
                     itemCount: prod.tags.length,
                   ),
                 ),
                 _bodyDivider(),
                 Text(
                   prod.name,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(fontFamily: 'Cormorant', fontSize: 35),
+                  style: _theme.textTheme.titleLarge?.copyWith(fontFamily: 'Cormorant', fontSize: 35),
                 ),
                 _bodyDivider(),
                 Row(
                   children: [
                     Text(
                       prod.cost.getSpacingString(),
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
+                      style: _theme.textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: _theme.inListSeparator),
                     if (prod.oldCost != null)
                       Text(
                         prod.oldCost!.getSpacingString(),
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: Colors.grey,
-                              decoration: TextDecoration.lineThrough,
-                            ),
+                        style: _theme.textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.grey,
+                          decoration: TextDecoration.lineThrough,
+                        ),
                       ),
                   ],
                 ),
@@ -140,15 +126,15 @@ class ProductPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Icon(Icons.straighten),
-                      const SizedBox(width: 8),
+                      SizedBox(width: _theme.inListSeparator),
                       Text(
                         'Таблица размеров',
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              color: Colors.grey,
-                              decoration: TextDecoration.underline,
-                            ),
+                        style: _theme.textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.grey,
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ],
                   ),
@@ -166,7 +152,63 @@ class ProductPage extends StatelessWidget {
         });
   }
 
-  Widget _bodyDivider() => const SizedBox(height: 16);
+  Widget _imageAndNav(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: 500,
+      child: Stack(
+        children: [
+          const Placeholder(),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: IconButton(
+                onPressed: Navigator.of(context).pop,
+                icon: const Icon(Icons.arrow_back, size: 32),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: IconButton(
+                onPressed: () {
+                  /* Subscribe */
+                },
+                icon: const Icon(
+                  Icons.favorite,
+                  size: 32,
+                ),
+              ),
+            ),
+          ),
+          BlocSelector<ProductPageProvider, ProductPageState, bool>(
+            selector: (state) => state.product.isNew,
+            builder: (context, isNew) {
+              return isNew
+                  ? Align(
+                      alignment: Alignment.bottomLeft,
+                      child: Container(
+                        margin: const EdgeInsets.all(16),
+                        color: const Color(0xFFCDCFD6),
+                        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                        child: Text(
+                          'NEW',
+                          style: _theme.textTheme.labelLarge?.copyWith(color: Colors.white),
+                        ),
+                      ),
+                    )
+                  : Container();
+            },
+          ),
+        ],
+      ), // Images
+    );
+  }
+
+  Widget _bodyDivider() => SizedBox(height: _theme.elementsGap);
 
   List<Widget> _colorPicker(BuildContext context) {
     return [
@@ -174,18 +216,17 @@ class ProductPage extends StatelessWidget {
         children: [
           Text(
             'Цвет',
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.grey),
+            style: _theme.textTheme.bodyLarge?.copyWith(color: Colors.grey),
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: _theme.inListSeparator),
           BlocSelector<ProductPageProvider, ProductPageState, String>(
-            selector: (state) => state.pickedColor.name,
-            builder: (context, colorName) {
-              return Text(
-                colorName,
-                style: Theme.of(context).textTheme.bodyLarge,
-              );
-            }
-          ),
+              selector: (state) => state.pickedColor.name,
+              builder: (context, colorName) {
+                return Text(
+                  colorName,
+                  style: _theme.textTheme.bodyLarge,
+                );
+              }),
         ],
       ),
       _bodyDivider(),
@@ -206,7 +247,7 @@ class ProductPage extends StatelessWidget {
     return [
       Text(
         'Выберите размер',
-        style: Theme.of(context).textTheme.bodyLarge,
+        style: _theme.textTheme.bodyLarge,
       ),
       _bodyDivider(),
       SizedBox(
@@ -233,23 +274,23 @@ class ProductPage extends StatelessWidget {
           children: [
             for (var d in desc)
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
+                padding: EdgeInsets.symmetric(vertical: _theme.verticalPadding),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       decoration: BoxDecoration(
                         color: const Color(0xFFA1948C),
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(_theme.smallRadius),
                       ),
                       height: 5,
                       width: 5,
                       child: const SizedBox.expand(),
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: _theme.inListSeparator),
                     Text(
                       d,
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: _theme.textTheme.bodyLarge,
                     )
                   ],
                 ),
@@ -273,10 +314,10 @@ class ProductPage extends StatelessWidget {
         },
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
+            padding: EdgeInsets.symmetric(vertical: _theme.verticalPadding),
             child: Text(
               'В корзину',
-              style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Colors.white),
+              style: _theme.textTheme.labelLarge?.copyWith(color: Colors.white),
             ),
           ),
         ),
@@ -296,7 +337,7 @@ class ProductPage extends StatelessWidget {
             child: SizedBox(
               width: halfWidth,
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                padding: EdgeInsets.symmetric(vertical: _theme.verticalPadding),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.max,
@@ -305,7 +346,7 @@ class ProductPage extends StatelessWidget {
                     const Icon(Icons.manage_search),
                     Text(
                       'Каталог',
-                      style: Theme.of(context).textTheme.labelSmall,
+                      style: _theme.textTheme.labelSmall,
                     )
                   ],
                 ),
@@ -319,7 +360,7 @@ class ProductPage extends StatelessWidget {
               child: SizedBox(
                 width: halfWidth,
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  padding: EdgeInsets.symmetric(vertical: _theme.verticalPadding),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
@@ -328,7 +369,7 @@ class ProductPage extends StatelessWidget {
                       const Icon(Icons.shopping_bag_outlined),
                       Text(
                         'Корзина',
-                        style: Theme.of(context).textTheme.labelSmall,
+                        style: _theme.textTheme.labelSmall,
                       )
                     ],
                   ),
