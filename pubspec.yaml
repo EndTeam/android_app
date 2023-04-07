@@ -35,3 +35,10 @@ flutter:
           style: italic
         - asset: fonts/Montserrat-Bold.ttf
           weight: 700
+    - family: Cormorant
+      fonts:
+        - asset: fonts/CormorantGaramond-Regular.ttf
+        - asset: fonts/CormorantGaramond-Italic.ttf
+          style: italic
+        - asset: fonts/CormorantGaramond-Bold.ttf
+          weight: 700

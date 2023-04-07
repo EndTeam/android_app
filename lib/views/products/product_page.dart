@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ma_for_feip/extensions/cost.dart';
 import 'package:ma_for_feip/models/products/product.dart';
-import 'package:ma_for_feip/models/size.dart';
 import 'package:ma_for_feip/providers/product_page/product_page_provider.dart';
+import 'package:ma_for_feip/views/widgets/color_picker.dart';
+import 'package:ma_for_feip/views/widgets/size_picker.dart';
 
 class ProductPage extends StatelessWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -99,7 +100,7 @@ class ProductPage extends StatelessWidget {
                 _bodyDivider(),
                 Text(
                   prod.name,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(fontFamily: 'Cormorant', fontSize: 35),
                 ),
                 _bodyDivider(),
                 Row(
@@ -125,9 +126,9 @@ class ProductPage extends StatelessWidget {
                   ],
                 ),
                 _bodyDivider(),
-                ..._colorPicker(context, prod.colors),
+                ..._colorPicker(context),
                 _bodyDivider(),
-                ..._sizePicker(context, prod.sizes),
+                ..._sizePicker(context),
                 _bodyDivider(),
                 InkWell(
                   onTap: () {
@@ -153,7 +154,7 @@ class ProductPage extends StatelessWidget {
                   ),
                 ),
                 _bodyDivider(),
-                ..._description(context, prod.description),
+                _description(context),
                 _bodyDivider(),
                 // ignore: prefer_const_constructors
                 Placeholder(
@@ -167,7 +168,7 @@ class ProductPage extends StatelessWidget {
 
   Widget _bodyDivider() => const SizedBox(height: 16);
 
-  List<Widget> _colorPicker(BuildContext context, List<Color> colors) {
+  List<Widget> _colorPicker(BuildContext context) {
     return [
       Row(
         children: [
@@ -176,9 +177,14 @@ class ProductPage extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Colors.grey),
           ),
           const SizedBox(width: 8),
-          Text(
-            'Голубой',
-            style: Theme.of(context).textTheme.bodyLarge,
+          BlocSelector<ProductPageProvider, ProductPageState, String>(
+            selector: (state) => state.pickedColor.name,
+            builder: (context, colorName) {
+              return Text(
+                colorName,
+                style: Theme.of(context).textTheme.bodyLarge,
+              );
+            }
           ),
         ],
       ),
@@ -186,44 +192,17 @@ class ProductPage extends StatelessWidget {
       SizedBox(
         height: 40,
         child: BlocBuilder<ProductPageProvider, ProductPageState>(
-        () ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (BuildContext context, int index) {
-              final color = colors[index];
-              return InkWell(
-                onTap: () {
-
-                },
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(
-                      color: Colors.grey,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(60),
-                  ),
-                  padding: const EdgeInsets.all(3),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: color,
-                    ),
-                  ),
-                ),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 8),
-            itemCount: colors.length,
+          builder: (context, state) => ColorPicker(
+            colors: state.product.colors,
+            selected: state.product.colors.indexOf(state.pickedColor),
+            onColorPicked: context.read<ProductPageProvider>().pickColor,
           ),
         ),
       )
     ];
   }
 
-  List<Widget> _sizePicker(BuildContext context, List<Size> sizes) {
+  List<Widget> _sizePicker(BuildContext context) {
     return [
       Text(
         'Выберите размер',
@@ -232,60 +211,53 @@ class ProductPage extends StatelessWidget {
       _bodyDivider(),
       SizedBox(
         height: 70,
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          separatorBuilder: (BuildContext context, int index) => _bodyDivider(),
-          itemBuilder: (BuildContext context, int index) {
-            final size = sizes[index];
-            return Card(
-              surfaceTintColor: Colors.white,
-              elevation: 5,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(size.size),
-                    Text('(${size.minSize}-${size.maxSize})'),
-                  ],
-                ),
-              ),
-            );
-          },
-          itemCount: sizes.length,
+        child: BlocBuilder<ProductPageProvider, ProductPageState>(
+          builder: (_, state) => SizePicker(
+            sizes: state.product.sizes,
+            selected: state.product.sizes.indexOf(state.pickedSize),
+            onSizePicked: context.read<ProductPageProvider>().pickSize,
+          ),
         ),
-      )
+      ),
     ];
   }
 
-  List<Widget> _description(BuildContext context, List<String> desc) {
-    return [
-      for (var d in desc)
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFFA1948C),
-                  borderRadius: BorderRadius.circular(5),
+  Widget _description(BuildContext context) {
+    return BlocSelector<ProductPageProvider, ProductPageState, List<String>>(
+      selector: (state) => state.product.description,
+      builder: (context, desc) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            for (var d in desc)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFA1948C),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      height: 5,
+                      width: 5,
+                      child: const SizedBox.expand(),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      d,
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    )
+                  ],
                 ),
-                height: 5,
-                width: 5,
-                child: const SizedBox.expand(),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                d,
-                style: Theme.of(context).textTheme.bodyLarge,
               )
-            ],
-          ),
-        )
-    ];
+          ],
+        );
+      },
+    );
   }
 
   Widget _addToCartBtn(BuildContext context) {

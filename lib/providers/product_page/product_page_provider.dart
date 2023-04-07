@@ -1,32 +1,35 @@
-import 'dart:ui';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ma_for_feip/models/named_color.dart';
 import 'package:ma_for_feip/models/products/product.dart';
-import 'package:ma_for_feip/models/size.dart';
+import 'package:ma_for_feip/models/named_size.dart';
 
 class ProductPageProvider extends Cubit<ProductPageState> {
   ProductPageProvider(Product p) : super(ProductPageState(p));
 
-  void pickColor(Color color) {
-    emit(state.._pickedColor = color);
+  void pickColor(NamedColor color) {
+    emit(state.copyWith(color: color));
   }
 
-  void pickSize(Size size) {
-    emit(state.._pickedSize = size);
+  void pickSize(NamedSize size) {
+    emit(state.copyWith(size: size));
   }
 }
 
 class ProductPageState {
   final Product _product;
 
-  late Size _pickedSize = _product.sizes.first;
-  late Color _pickedColor = _product.colors.first;
+  late NamedSize _pickedSize = _product.sizes.first;
+  late NamedColor _pickedColor = _product.colors.first;
 
   Product get product => _product;
 
-  Size get pickedSize => _pickedSize;
+  NamedSize get pickedSize => _pickedSize;
 
-  Color get pickedColor => _pickedColor;
+  NamedColor get pickedColor => _pickedColor;
 
   ProductPageState(this._product);
+
+  ProductPageState copyWith({NamedColor? color, NamedSize? size}) => ProductPageState(_product)
+    .._pickedSize = size ?? _pickedSize
+    .._pickedColor = color ?? _pickedColor;
 }

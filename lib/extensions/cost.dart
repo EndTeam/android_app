@@ -2,7 +2,7 @@ extension Cost on int {
   String getSpacingString() {
     final symbols = toString().split('');
     if (symbols.length < 2) {
-      return '0,${symbols.join()} ₽';
+      return '${(this / 100.0).toStringAsFixed(2)} ₽';
     } else {
       for (int i = symbols.length - 5; i > 0; i -= 3) {
         symbols.insert(i, ' ');

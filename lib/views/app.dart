@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ma_for_feip/models/named_color.dart';
+import 'package:ma_for_feip/models/named_size.dart';
 import 'package:ma_for_feip/models/products/product.dart';
-import 'package:ma_for_feip/models/size.dart';
 import 'package:ma_for_feip/providers/product_page/product_page_provider.dart';
 import 'package:ma_for_feip/views/products/product_page.dart';
 
@@ -33,17 +34,17 @@ final productMock = Product(
   cost: 5600000,
   oldCost: 15600000,
   colors: [
-    Colors.blue,
-    Colors.white,
-    Colors.grey,
-    Colors.brown,
-    Colors.green,
+    NamedColor(Colors.blue, 'Голубой'),
+    NamedColor(Colors.white, 'Белый'),
+    NamedColor(Colors.grey, 'Серый'),
+    NamedColor(Colors.brown, 'Коричневый'),
+    NamedColor(Colors.green, 'Зеленый'),
   ],
   sizes: [
-    Size.xs(false),
-    Size.s(false),
-    Size.m(false),
-    Size.l(false),
+    NamedSize.xs(false),
+    NamedSize.s(false),
+    NamedSize.m(false),
+    NamedSize.l(false),
   ],
   description: [
     'Жакет с поясом',

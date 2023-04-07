@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
-import 'package:flutter/painting.dart';
+import 'package:ma_for_feip/models/named_color.dart';
 
-import 'package:ma_for_feip/models/size.dart';
+import 'package:ma_for_feip/models/named_size.dart';
 
 class Product {
   final String name;
@@ -11,8 +11,8 @@ class Product {
   final bool isNew;
   final int cost;
   final int? oldCost;
-  final List<Color> colors;
-  final List<Size> sizes;
+  final List<NamedColor> colors;
+  final List<NamedSize> sizes;
   final List<String> description;
 
   Product({
@@ -41,7 +41,10 @@ class Product {
       "cost": "int",
       "old_cost" "int",
       "colors": [
-        {"color": "int"},
+        {
+          "color": "int",
+          "name": "string"
+        },
       ],
       "sizes": [
         "size": "string",
