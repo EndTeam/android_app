@@ -11,8 +11,9 @@ class ThemeInfo {
     textTheme = theme.textTheme;
     colorSchema = theme.colorScheme;
 
-    // primaryTextColor = colorSchema.onPrimary;
-    // secondaryTextColor = colorSchema.onSecondary;
+    primaryTextColor = Colors.black;
+    secondaryTextColor = Colors.grey;
+    tertiaryTextColor = Colors.white;
   }
 
   late final ThemeData theme;
@@ -28,6 +29,7 @@ class ThemeInfo {
   final double mediumRadius = 16;
   final double bigRadius = 32;
 
-  // late final Color primaryTextColor;
-  // late final Color secondaryTextColor;
+  late final Color primaryTextColor;
+  late final Color secondaryTextColor;
+  late final Color tertiaryTextColor;
 }

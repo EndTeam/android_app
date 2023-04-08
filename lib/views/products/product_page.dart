@@ -105,7 +105,7 @@ class ProductPage extends StatelessWidget {
                         style: _theme.textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
-                          color: Colors.grey,
+                          color: _theme.secondaryTextColor,
                           decoration: TextDecoration.lineThrough,
                         ),
                       ),
@@ -194,10 +194,8 @@ class ProductPage extends StatelessWidget {
                         margin: const EdgeInsets.all(16),
                         color: const Color(0xFFCDCFD6),
                         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-                        child: Text(
-                          'NEW',
-                          style: _theme.textTheme.labelLarge?.copyWith(color: Colors.white),
-                        ),
+                        child:
+                            Text('NEW', style: _theme.textTheme.labelLarge?.copyWith(color: _theme.tertiaryTextColor)),
                       ),
                     )
                   : Container();
@@ -317,7 +315,7 @@ class ProductPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: _theme.verticalPadding),
             child: Text(
               'В корзину',
-              style: _theme.textTheme.labelLarge?.copyWith(color: Colors.white),
+              style: _theme.textTheme.labelLarge?.copyWith(color: _theme.tertiaryTextColor),
             ),
           ),
         ),
