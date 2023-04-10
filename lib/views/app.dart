@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ma_for_feip/main.dart';
 import 'package:ma_for_feip/models/named_color.dart';
 import 'package:ma_for_feip/models/named_size.dart';
 import 'package:ma_for_feip/models/products/product.dart';
-import 'package:ma_for_feip/providers/product_page/product_page_provider.dart';
-import 'package:ma_for_feip/views/products/product_page.dart';
+import 'package:ma_for_feip/views/cart/cart_page.dart';
+import 'package:ma_for_feip/views/catalog/catalog_page.dart';
+import 'package:ma_for_feip/views/favorite/favorite_page.dart';
+import 'package:ma_for_feip/views/profile/profile_page.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -16,6 +17,14 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   bool _readyToWork = false;
+
+  int _pageIndex = 0;
+  final _pages = [
+    const CatalogPage(),
+    const CartPage(),
+    const FavoritePage(),
+    const ProfilePage(),
+  ];
 
   _initializeDependencies(BuildContext context) {
     appComponent.themeInfo().init(context);
@@ -40,11 +49,42 @@ class _AppState extends State<App> {
         useMaterial3: true,
       ),
       home: _readyToWork
-          ? BlocProvider(
-              create: (_) => ProductPageProvider(productMock),
-              child: ProductPage(),
+          ? Column(
+              children: [
+                Expanded(child: _pages[_pageIndex]),
+                _bottomNavigation(context),
+              ],
             )
-          : Container(),
+          : const Center(
+              child: CircularProgressIndicator(),
+            ),
+    );
+  }
+
+  void _changePage(int index) {
+    setState(() {
+      _pageIndex = index;
+    });
+  }
+
+  Widget _bottomNavigation(BuildContext context) {
+    return BottomNavigationBar(
+      backgroundColor: Colors.white,
+      currentIndex: _pageIndex,
+      selectedItemColor: Colors.black,
+      unselectedItemColor: Colors.grey,
+      unselectedLabelStyle: const TextStyle(color: Colors.grey, fontSize: 14),
+      type: BottomNavigationBarType.fixed,
+      onTap: _changePage,
+      items: _pages
+          .map(
+            (p) => BottomNavigationBarItem(
+              icon: p.icon,
+              activeIcon: p.activeIcon,
+              label: p.label,
+            ),
+          )
+          .toList(),
     );
   }
 }
