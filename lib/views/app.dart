@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ma_for_feip/main.dart';
-import 'package:ma_for_feip/models/named_color.dart';
-import 'package:ma_for_feip/models/named_size.dart';
-import 'package:ma_for_feip/models/products/product.dart';
+import 'package:ma_for_feip/products/models/named_color.dart';
+import 'package:ma_for_feip/products/models/named_size.dart';
+import 'package:ma_for_feip/products/models/product_model.dart';
+import 'package:ma_for_feip/products/product_page/product_page.dart';
 import 'package:ma_for_feip/views/cart/cart_page.dart';
 import 'package:ma_for_feip/views/catalog/catalog_page.dart';
 import 'package:ma_for_feip/views/favorite/favorite_page.dart';
@@ -16,8 +16,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  bool _readyToWork = false;
-
   int _pageIndex = 0;
   final _pages = [
     const CatalogPage(),
@@ -26,39 +24,25 @@ class _AppState extends State<App> {
     const ProfilePage(),
   ];
 
-  _initializeDependencies(BuildContext context) {
-    appComponent.themeInfo().init(context);
-    setState(() {
-      _readyToWork = true;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (!dependenciesInited) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _initializeDependencies(context));
-      dependenciesInited = true;
-    }
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.white,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.white,
+          ),
+          fontFamily: 'Montserrat',
+          useMaterial3: true,
         ),
-        fontFamily: 'Montserrat',
-        useMaterial3: true,
-      ),
-      home: _readyToWork
-          ? Column(
-              children: [
-                Expanded(child: _pages[_pageIndex]),
-                _bottomNavigation(context),
-              ],
-            )
-          : const Center(
-              child: CircularProgressIndicator(),
-            ),
-    );
+        home: ProductPage(productMock)
+        // Column(
+        //   children: [
+        //     Expanded(child: _pages[_pageIndex]),
+        //     _bottomNavigation(context),
+        //   ],
+        // ),
+        );
   }
 
   void _changePage(int index) {
@@ -89,7 +73,7 @@ class _AppState extends State<App> {
   }
 }
 
-final productMock = Product(
+final productMock = ProductModel(
   name: 'Жакет Weekend Max Mara ONDINA',
   images: [],
   tags: ['Идеи для подарков', 'Max Mara Weekend'],
@@ -97,17 +81,17 @@ final productMock = Product(
   cost: 5600000,
   oldCost: 15600000,
   colors: [
-    NamedColor(Colors.blue, 'Голубой'),
-    NamedColor(Colors.white, 'Белый'),
-    NamedColor(Colors.grey, 'Серый'),
-    NamedColor(Colors.brown, 'Коричневый'),
-    NamedColor(Colors.green, 'Зеленый'),
+    const NamedColor(Colors.blue, 'Голубой'),
+    const NamedColor(Colors.white, 'Белый'),
+    const NamedColor(Colors.grey, 'Серый'),
+    const NamedColor(Colors.brown, 'Коричневый'),
+    const NamedColor(Colors.green, 'Зеленый'),
   ],
   sizes: [
-    NamedSize.xs(false),
-    NamedSize.s(false),
-    NamedSize.m(false),
-    NamedSize.l(false),
+    NamedSize.fromStringSize('XS'),
+    NamedSize.fromStringSize('S'),
+    NamedSize.fromStringSize('M'),
+    NamedSize.fromStringSize('L'),
   ],
   description: [
     'Жакет с поясом',

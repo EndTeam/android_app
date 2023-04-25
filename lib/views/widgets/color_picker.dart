@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ma_for_feip/models/named_color.dart';
+import 'package:ma_for_feip/products/models/named_color.dart';
 
 class ColorPicker extends StatelessWidget {
   final List<NamedColor> colors;
@@ -28,7 +28,9 @@ class ColorPicker extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.transparent,
               border: Border.all(
-                color: colors[selected] == color ? const Color(0xFFA1948C) : Colors.transparent,
+                color: colors[selected] == color
+                    ? const Color(0xFFA1948C)
+                    : Colors.transparent,
                 width: 1,
               ),
               borderRadius: BorderRadius.circular(60),
@@ -47,7 +49,8 @@ class ColorPicker extends StatelessWidget {
           ),
         );
       },
-      separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 8),
+      separatorBuilder: (BuildContext context, int index) =>
+          const SizedBox(width: 8),
       itemCount: colors.length,
     );
   }

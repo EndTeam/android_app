@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ma_for_feip/models/named_size.dart';
+import 'package:ma_for_feip/products/models/named_size.dart';
 
 class SizePicker extends StatelessWidget {
   final List<NamedSize> sizes;
@@ -17,7 +17,8 @@ class SizePicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       scrollDirection: Axis.horizontal,
-      separatorBuilder: (BuildContext context, int index) => const SizedBox(width: 16),
+      separatorBuilder: (BuildContext context, int index) =>
+          const SizedBox(width: 16),
       itemBuilder: (BuildContext context, int index) {
         final size = sizes[index];
         bool isIt = sizes[selected] == size;

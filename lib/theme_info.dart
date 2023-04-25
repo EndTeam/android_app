@@ -1,35 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:jugger/jugger.dart';
 
-@singleton
 class ThemeInfo {
-  @inject
-  ThemeInfo();
+  static const double elementsGap = 16.0;
+  static const double inListSeparator = 8.0;
+  static const double verticalPadding = 4.0;
+  static const double horizontalPadding = 8.0;
 
-  init(BuildContext context) {
-    theme = Theme.of(context);
-    textTheme = theme.textTheme;
-    colorSchema = theme.colorScheme;
+  static const double smallRadius = 4;
+  static const double mediumRadius = 16;
+  static const double bigRadius = 32;
 
-    primaryTextColor = Colors.black;
-    secondaryTextColor = Colors.grey;
-    tertiaryTextColor = Colors.white;
-  }
+  static const Color primaryTextColor = Colors.black;
+  static const Color secondaryTextColor = Colors.grey;
+  static const Color tertiaryTextColor = Colors.white;
+  static const Color primaryColor = Colors.white;
+  static const Color secondaryColor = Colors.white70;
+  static const Color tertiaryColor = Colors.white10;
 
-  late final ThemeData theme;
-  late final TextTheme textTheme;
-  late final ColorScheme colorSchema;
+  // textStyles
+  static const TextStyle titleLarge = TextStyle(
+    color: primaryColor,
+    fontSize: 36,
+    decoration: TextDecoration.none,
+    fontFamily: 'Cormorant',
+  );
 
-  final double elementsGap = 16.0;
-  final double inListSeparator = 8.0;
-  final double verticalPadding = 4.0;
-  final double horizontalPadding = 8.0;
+  static const TextStyle labelSmall = TextStyle(
+    color: primaryColor,
+    fontSize: 12,
+    decoration: TextDecoration.none,
+  );
 
-  final double smallRadius = 4;
-  final double mediumRadius = 16;
-  final double bigRadius = 32;
+  static const TextStyle labelLarge = TextStyle(
+    color: primaryColor,
+    fontSize: 26,
+    decoration: TextDecoration.none,
+  );
 
-  late final Color primaryTextColor;
-  late final Color secondaryTextColor;
-  late final Color tertiaryTextColor;
+  static const TextStyle bodyLarge = TextStyle(
+    color: primaryColor,
+    fontSize: 20,
+    decoration: TextDecoration.none,
+  );
 }
