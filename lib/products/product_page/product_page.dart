@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ma_for_feip/extensions/cost.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
 import 'package:ma_for_feip/products/product_page/product_page_notifier.dart';
+import 'package:ma_for_feip/products/product_page/widgets/big_product_image.dart';
 import 'package:ma_for_feip/products/product_page/widgets/body_divider.dart';
 import 'package:ma_for_feip/products/product_page/widgets/bottom_nav.dart';
 import 'package:ma_for_feip/products/product_page/widgets/cart_button.dart';
@@ -29,7 +30,12 @@ class ProductPage extends ConsumerWidget {
         children: [
           Expanded(
             child: ListView(
+              padding: const EdgeInsets.symmetric(
+                horizontal: ThemeInfo.horizontalPadding,
+              ),
               children: [
+                BigProductImage(product: product),
+                const BodyDivider(),
                 ProductTags(tags: state.product.tags),
                 const BodyDivider(),
                 Text(state.product.name, style: ThemeInfo.titleLarge),
@@ -42,26 +48,24 @@ class ProductPage extends ConsumerWidget {
                 ColorsBloc(
                   colors: state.product.colors,
                   selectedColor: state.color,
-                  onColorTap: ref
-                      .read(productPageProviderBuilder(product).notifier)
-                      .pickColor,
+                  onColorTap: ref.read(productPageProviderBuilder(product).notifier).pickColor,
                 ),
                 const BodyDivider(),
                 SizesBloc(
                   sizes: state.product.sizes,
                   selectedSize: state.size,
-                  onSizeTap: ref
-                      .read(productPageProviderBuilder(product).notifier)
-                      .pickSize,
+                  onSizeTap: ref.read(productPageProviderBuilder(product).notifier).pickSize,
                 ),
                 const BodyDivider(),
                 Description(description: state.product.description),
+                const BodyDivider(),
                 const SimilarItems(),
               ],
             ),
           ),
           const GradientDivider(),
           const CartButton(),
+          const Divider(height: 1),
           const BottomNav(),
         ],
       ),

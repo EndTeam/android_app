@@ -19,26 +19,26 @@ class ThemeInfo {
 
   // textStyles
   static const TextStyle titleLarge = TextStyle(
-    color: primaryColor,
+    color: primaryTextColor,
     fontSize: 36,
     decoration: TextDecoration.none,
     fontFamily: 'Cormorant',
   );
 
   static const TextStyle labelSmall = TextStyle(
-    color: primaryColor,
+    color: primaryTextColor,
     fontSize: 12,
     decoration: TextDecoration.none,
   );
 
   static const TextStyle labelLarge = TextStyle(
-    color: primaryColor,
+    color: primaryTextColor,
     fontSize: 26,
     decoration: TextDecoration.none,
   );
 
   static const TextStyle bodyLarge = TextStyle(
-    color: primaryColor,
+    color: primaryTextColor,
     fontSize: 20,
     decoration: TextDecoration.none,
   );

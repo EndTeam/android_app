@@ -31,9 +31,11 @@ class Description extends StatelessWidget {
                   child: const SizedBox.expand(),
                 ),
                 const SizedBox(width: ThemeInfo.inListSeparator),
-                Text(
-                  d,
-                  style: ThemeInfo.bodyLarge,
+                Flexible(
+                  child: Text(
+                    d,
+                    style: ThemeInfo.bodyLarge,
+                  ),
                 )
               ],
             ),

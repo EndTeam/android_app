@@ -52,7 +52,7 @@ class SizesBloc extends StatelessWidget {
         ),
         const BodyDivider(),
         SizedBox(
-          height: 70,
+          height: 80,
           child: SizePicker(
             sizes: sizes,
             selected: sizes.indexOf(selectedSize),

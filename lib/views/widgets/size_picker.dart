@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ma_for_feip/products/models/named_size.dart';
+import 'package:ma_for_feip/theme_info.dart';
 
 class SizePicker extends StatelessWidget {
   final List<NamedSize> sizes;
@@ -16,9 +17,10 @@ class SizePicker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      padding: const EdgeInsets.symmetric(vertical: ThemeInfo.inListSeparator),
       scrollDirection: Axis.horizontal,
       separatorBuilder: (BuildContext context, int index) =>
-          const SizedBox(width: 16),
+          const SizedBox(width: ThemeInfo.elementsGap),
       itemBuilder: (BuildContext context, int index) {
         final size = sizes[index];
         bool isIt = sizes[selected] == size;
@@ -29,7 +31,7 @@ class SizePicker extends StatelessWidget {
           child: InkWell(
             onTap: () => onSizePicked(size),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: ThemeInfo.inListSeparator, horizontal: ThemeInfo.elementsGap),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
