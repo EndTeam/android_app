@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ma_for_feip/products/models/named_color.dart';
 import 'package:ma_for_feip/products/product_page/widgets/body_divider.dart';
 import 'package:ma_for_feip/theme_info.dart';
-import 'package:ma_for_feip/views/widgets/color_picker.dart';
+import 'package:ma_for_feip/products/product_page/widgets/color_picker.dart';
 
 class ColorsBloc extends StatelessWidget {
   final List<NamedColor> colors;

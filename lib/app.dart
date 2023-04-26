@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ma_for_feip/cart/cart_page.dart';
+import 'package:ma_for_feip/catalog/catalog_page.dart';
+import 'package:ma_for_feip/favorite/favorite_page.dart';
 import 'package:ma_for_feip/products/models/named_color.dart';
 import 'package:ma_for_feip/products/models/named_size.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
 import 'package:ma_for_feip/products/product_page/product_page.dart';
-import 'package:ma_for_feip/views/cart/cart_page.dart';
-import 'package:ma_for_feip/views/catalog/catalog_page.dart';
-import 'package:ma_for_feip/views/favorite/favorite_page.dart';
-import 'package:ma_for_feip/views/profile/profile_page.dart';
+import 'package:ma_for_feip/profile/profile_page.dart';
 
 class App extends StatefulWidget {
   const App({super.key});

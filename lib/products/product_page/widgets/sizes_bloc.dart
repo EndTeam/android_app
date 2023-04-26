@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ma_for_feip/products/models/named_size.dart';
 import 'package:ma_for_feip/products/product_page/widgets/body_divider.dart';
 import 'package:ma_for_feip/theme_info.dart';
-import 'package:ma_for_feip/views/widgets/size_picker.dart';
+import 'package:ma_for_feip/products/product_page/widgets/size_picker.dart';
 
 class SizesBloc extends StatelessWidget {
   final List<NamedSize> sizes;

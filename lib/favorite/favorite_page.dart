@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ma_for_feip/views/base_page_interface.dart';
+import 'package:ma_for_feip/base_page_interface.dart';
 
 class FavoritePage extends BasePageInterface {
   @override
