@@ -31,7 +31,9 @@ class SizePicker extends StatelessWidget {
           child: InkWell(
             onTap: () => onSizePicked(size),
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: ThemeInfo.inListSeparator, horizontal: ThemeInfo.elementsGap),
+              padding: const EdgeInsets.symmetric(
+                  vertical: ThemeInfo.inListSeparator,
+                  horizontal: ThemeInfo.elementsGap),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,

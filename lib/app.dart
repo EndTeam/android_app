@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ma_for_feip/cart/cart_page.dart';
-import 'package:ma_for_feip/catalog/catalog_page.dart';
-import 'package:ma_for_feip/favorite/favorite_page.dart';
 import 'package:ma_for_feip/products/models/named_color.dart';
 import 'package:ma_for_feip/products/models/named_size.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
-import 'package:ma_for_feip/products/product_page/product_page.dart';
-import 'package:ma_for_feip/profile/profile_page.dart';
+import 'package:ma_for_feip/router/router.dart';
+import 'package:ma_for_feip/theme_info.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -16,59 +13,23 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  int _pageIndex = 0;
-  final _pages = [
-    const CatalogPage(),
-    const CartPage(),
-    const FavoritePage(),
-    const ProfilePage(),
-  ];
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.white,
-          ),
-          fontFamily: 'Montserrat',
-          useMaterial3: true,
+    return MaterialApp.router(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.white,
+          primary: ThemeInfo.primaryColor,
+          secondary: ThemeInfo.secondaryColor,
+          tertiary: ThemeInfo.tertiaryColor,
+          onBackground: Colors.black,
+          onPrimary: Colors.black,
         ),
-        home: ProductPage(productMock)
-        // Column(
-        //   children: [
-        //     Expanded(child: _pages[_pageIndex]),
-        //     _bottomNavigation(context),
-        //   ],
-        // ),
-        );
-  }
-
-  void _changePage(int index) {
-    setState(() {
-      _pageIndex = index;
-    });
-  }
-
-  Widget _bottomNavigation(BuildContext context) {
-    return BottomNavigationBar(
-      backgroundColor: Colors.white,
-      currentIndex: _pageIndex,
-      selectedItemColor: Colors.black,
-      unselectedItemColor: Colors.grey,
-      unselectedLabelStyle: const TextStyle(color: Colors.grey, fontSize: 14),
-      type: BottomNavigationBarType.fixed,
-      onTap: _changePage,
-      items: _pages
-          .map(
-            (p) => BottomNavigationBarItem(
-              icon: p.icon,
-              activeIcon: p.activeIcon,
-              label: p.label,
-            ),
-          )
-          .toList(),
+        bottomNavigationBarTheme: ThemeInfo.bottomNavigationBarThemeData,
+        fontFamily: 'Montserrat',
+        useMaterial3: true,
+      ),
+      routerConfig: AppRouter.router,
     );
   }
 }
