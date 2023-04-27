@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "857652686892",
+    "project_id": "ma-for-feip",
+    "storage_bucket": "ma-for-feip.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:857652686892:android:a77e7a7da1dce084e2e189",
+        "android_client_info": {
+          "package_name": "com.example.ma_for_feip"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "857652686892-c7o6khhko9c7aqo669b9er32sie4ku3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYzVQ_VNvfmoLAmtwoKnQb0zcYDkbYa9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "857652686892-c7o6khhko9c7aqo669b9er32sie4ku3l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "857652686892-qf80k66ok5ln7qb40m9hv4fc5bfbl13g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.endteam.maforfeip"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
