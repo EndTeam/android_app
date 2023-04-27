@@ -34,5 +34,6 @@ class AppLocator extends ServiceLocator {
 
   void _initDio() {
     _dio = Dio();
+    _dio;
   }
 }
