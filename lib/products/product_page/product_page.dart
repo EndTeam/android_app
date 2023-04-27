@@ -48,13 +48,17 @@ class ProductPage extends ConsumerWidget {
                 ColorsBloc(
                   colors: state.product.colors,
                   selectedColor: state.color,
-                  onColorTap: ref.read(productPageProviderBuilder(product).notifier).pickColor,
+                  onColorTap: ref
+                      .read(productPageProviderBuilder(product).notifier)
+                      .pickColor,
                 ),
                 const BodyDivider(),
                 SizesBloc(
                   sizes: state.product.sizes,
                   selectedSize: state.size,
-                  onSizeTap: ref.read(productPageProviderBuilder(product).notifier).pickSize,
+                  onSizeTap: ref
+                      .read(productPageProviderBuilder(product).notifier)
+                      .pickSize,
                 ),
                 const BodyDivider(),
                 Description(description: state.product.description),

@@ -42,4 +42,12 @@ class ThemeInfo {
     fontSize: 20,
     decoration: TextDecoration.none,
   );
+
+  static const BottomNavigationBarThemeData bottomNavigationBarThemeData =
+      BottomNavigationBarThemeData(
+    selectedItemColor: Colors.black,
+    unselectedItemColor: Colors.grey,
+    unselectedLabelStyle: TextStyle(color: Colors.grey, fontSize: 14),
+    type: BottomNavigationBarType.fixed,
+  );
 }
