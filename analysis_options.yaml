@@ -8,6 +8,11 @@
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
 include: package:flutter_lints/flutter.yaml
+analyzer:
+  exclude:
+    - '**.g.dart'
+    - '**.freezed.dart'
+    - '**/firebase_init.dart'
 
 linter:
   # The lint rules applied to this project can be customized in the
@@ -27,6 +32,7 @@ linter:
     no_logic_in_create_state: true
     prefer_single_quotes: true
     sort_child_properties_last: true
+
 
 
 # Additional information about this file can be found at
