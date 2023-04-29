@@ -5,7 +5,7 @@ import 'package:ma_for_feip/extensions/cost.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
 import 'package:ma_for_feip/products/product_page/product_page_notifier.dart';
 import 'package:ma_for_feip/products/product_page/widgets/big_product_image.dart';
-import 'package:ma_for_feip/products/product_page/widgets/body_divider.dart';
+import 'package:ma_for_feip/public_views/body_divider.dart';
 import 'package:ma_for_feip/products/product_page/widgets/bottom_nav.dart';
 import 'package:ma_for_feip/products/product_page/widgets/cart_button.dart';
 import 'package:ma_for_feip/products/product_page/widgets/colors_bloc.dart';
