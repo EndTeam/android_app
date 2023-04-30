@@ -5,10 +5,6 @@ import 'package:ma_for_feip/products/models/named_size.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
 import 'package:ma_for_feip/products/product_page/product_page_state/product_page_state.dart';
 
-final productPageProviderBuilder = StateNotifierProvider.autoDispose
-    .family<ProductPageNotifier, ProductPageState, ProductModel>(
-        (ref, product) => ProductPageNotifier(product));
-
 class ProductPageNotifier extends StateNotifier<ProductPageState> {
   ProductPageNotifier(ProductModel product)
       : super(

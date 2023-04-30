@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:ma_for_feip/extensions/cost.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
-import 'package:ma_for_feip/products/product_page/product_page_notifier.dart';
 import 'package:ma_for_feip/products/product_page/widgets/big_product_image.dart';
 import 'package:ma_for_feip/public_views/body_divider.dart';
 import 'package:ma_for_feip/products/product_page/widgets/bottom_nav.dart';
@@ -15,6 +14,7 @@ import 'package:ma_for_feip/products/product_page/widgets/gradient_divider.dart'
 import 'package:ma_for_feip/products/product_page/widgets/product_tags.dart';
 import 'package:ma_for_feip/products/product_page/widgets/similar_items.dart';
 import 'package:ma_for_feip/products/product_page/widgets/sizes_bloc.dart';
+import 'package:ma_for_feip/service_locator/app_locator.dart';
 import 'package:ma_for_feip/theme_info.dart';
 
 class ProductPage extends ConsumerWidget {
@@ -24,7 +24,8 @@ class ProductPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final state = ref.watch(productPageProviderBuilder(product));
+    final providerBuilder = AppLocator.instance.productPageProviderBuilder;
+    final state = ref.watch(providerBuilder(product));
     return Scaffold(
       body: Column(
         children: [
@@ -48,17 +49,15 @@ class ProductPage extends ConsumerWidget {
                 ColorsBloc(
                   colors: state.product.colors,
                   selectedColor: state.color,
-                  onColorTap: ref
-                      .read(productPageProviderBuilder(product).notifier)
-                      .pickColor,
+                  onColorTap:
+                      ref.read(providerBuilder(product).notifier).pickColor,
                 ),
                 const BodyDivider(),
                 SizesBloc(
                   sizes: state.product.sizes,
                   selectedSize: state.size,
-                  onSizeTap: ref
-                      .read(productPageProviderBuilder(product).notifier)
-                      .pickSize,
+                  onSizeTap:
+                      ref.read(providerBuilder(product).notifier).pickSize,
                 ),
                 const BodyDivider(),
                 Description(description: state.product.description),

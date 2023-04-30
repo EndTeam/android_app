@@ -14,7 +14,7 @@ class BigProductImage extends StatelessWidget {
       height: 500,
       child: Stack(
         children: [
-          const Placeholder(),
+          Image.network(product.images.first),
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
@@ -50,7 +50,7 @@ class BigProductImage extends StatelessWidget {
                         const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                     child: Text(
                       'NEW',
-                      style: ThemeInfo.labelLarge.copyWith(
+                      style: ThemeInfo.labelSmall.copyWith(
                         color: ThemeInfo.tertiaryTextColor,
                       ),
                     ),
