@@ -91,13 +91,16 @@ class CategoryFlexCatalog extends StatelessWidget {
         LayoutBuilder(
           builder: (context, constraints) {
             return SizedBox(
-              height: 400,
+              height: 270,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
                   return SizedBox(
-                    width: constraints.maxWidth - 40,
-                    child: SmallProductCard(product: products[index]),
+                    width: (constraints.maxWidth - 20) * 0.5,
+                    child: SmallProductCard(
+                      product: products[index],
+                      scaleFromBase: 0.5,
+                    ),
                   );
                 },
                 separatorBuilder: (_, __) {
