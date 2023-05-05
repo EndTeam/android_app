@@ -1,9 +1,6 @@
-import 'package:flutter/painting.dart';
-import 'package:ma_for_feip/products/models/named_color.dart';
-import 'package:ma_for_feip/products/models/named_size.dart';
+import 'package:ma_for_feip/products/mapper/color_mapper.dart';
+import 'package:ma_for_feip/products/mapper/size_mapper.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
-import 'package:ma_for_feip/products/models_dto/named_color/named_color.dart';
-import 'package:ma_for_feip/products/models_dto/named_size/named_size.dart';
 import 'package:ma_for_feip/products/models_dto/product_model/product_model.dart';
 
 class ProductMapper {
@@ -20,17 +17,5 @@ class ProductMapper {
       sizes: dto.sizes.map((size) => SizeMapper.fromSource(size)).toList(),
       description: dto.description.where((desc) => desc.isNotEmpty).toList(),
     );
-  }
-}
-
-class ColorMapper {
-  static NamedColor fromSource(NamedColorDTO dto) {
-    return NamedColor(Color(dto.color), dto.label);
-  }
-}
-
-class SizeMapper {
-  static NamedSize fromSource(NamedSizeDTO dto) {
-    return NamedSize.fromStringSize(dto.label);
   }
 }
