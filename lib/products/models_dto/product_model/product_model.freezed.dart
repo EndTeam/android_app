@@ -20,6 +20,7 @@ ProductModelDTO _$ProductModelDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductModelDTO {
+  int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
   List<String> get tags => throw _privateConstructorUsedError;
@@ -43,7 +44,8 @@ abstract class $ProductModelDTOCopyWith<$Res> {
       _$ProductModelDTOCopyWithImpl<$Res, ProductModelDTO>;
   @useResult
   $Res call(
-      {String name,
+      {int id,
+      String name,
       List<String> images,
       List<String> tags,
       bool isNew,
@@ -67,6 +69,7 @@ class _$ProductModelDTOCopyWithImpl<$Res, $Val extends ProductModelDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? images = null,
     Object? tags = null,
@@ -78,6 +81,10 @@ class _$ProductModelDTOCopyWithImpl<$Res, $Val extends ProductModelDTO>
     Object? description = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -127,7 +134,8 @@ abstract class _$$_ProductModelDTOCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String name,
+      {int id,
+      String name,
       List<String> images,
       List<String> tags,
       bool isNew,
@@ -149,6 +157,7 @@ class __$$_ProductModelDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? name = null,
     Object? images = null,
     Object? tags = null,
@@ -160,6 +169,10 @@ class __$$_ProductModelDTOCopyWithImpl<$Res>
     Object? description = null,
   }) {
     return _then(_$_ProductModelDTO(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -204,7 +217,8 @@ class __$$_ProductModelDTOCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ProductModelDTO implements _ProductModelDTO {
   const _$_ProductModelDTO(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required final List<String> images,
       required final List<String> tags,
       required this.isNew,
@@ -222,6 +236,8 @@ class _$_ProductModelDTO implements _ProductModelDTO {
   factory _$_ProductModelDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ProductModelDTOFromJson(json);
 
+  @override
+  final int id;
   @override
   final String name;
   final List<String> _images;
@@ -272,7 +288,7 @@ class _$_ProductModelDTO implements _ProductModelDTO {
 
   @override
   String toString() {
-    return 'ProductModelDTO(name: $name, images: $images, tags: $tags, isNew: $isNew, cost: $cost, oldCost: $oldCost, colors: $colors, sizes: $sizes, description: $description)';
+    return 'ProductModelDTO(id: $id, name: $name, images: $images, tags: $tags, isNew: $isNew, cost: $cost, oldCost: $oldCost, colors: $colors, sizes: $sizes, description: $description)';
   }
 
   @override
@@ -280,6 +296,7 @@ class _$_ProductModelDTO implements _ProductModelDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductModelDTO &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
             const DeepCollectionEquality().equals(other._tags, _tags) &&
@@ -296,6 +313,7 @@ class _$_ProductModelDTO implements _ProductModelDTO {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       name,
       const DeepCollectionEquality().hash(_images),
       const DeepCollectionEquality().hash(_tags),
@@ -322,7 +340,8 @@ class _$_ProductModelDTO implements _ProductModelDTO {
 
 abstract class _ProductModelDTO implements ProductModelDTO {
   const factory _ProductModelDTO(
-      {required final String name,
+      {required final int id,
+      required final String name,
       required final List<String> images,
       required final List<String> tags,
       required final bool isNew,
@@ -335,6 +354,8 @@ abstract class _ProductModelDTO implements ProductModelDTO {
   factory _ProductModelDTO.fromJson(Map<String, dynamic> json) =
       _$_ProductModelDTO.fromJson;
 
+  @override
+  int get id;
   @override
   String get name;
   @override

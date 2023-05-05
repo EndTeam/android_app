@@ -8,7 +8,7 @@ part 'named_color.g.dart';
 class NamedColorDTO with _$NamedColorDTO {
   const factory NamedColorDTO({
     required final int color,
-    required final int label,
+    required final String label,
   }) = _NamedColorDTO;
 
   factory NamedColorDTO.fromJson(Map<String, dynamic> json) =>
