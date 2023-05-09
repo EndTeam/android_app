@@ -21,3 +21,17 @@ jobs:
       - run: dart format --set-exit-if-changed .
 
       - run: flutter analyze --no-fatal-infos ./lib
+
+  tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - run: flutter pub get
+
+      - run: flutter test
