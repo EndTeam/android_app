@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ma_for_feip/products/mock_data/mock_product.dart';
 
 void main() {
-  group('Named color mock test', () {
+  group('Products mock test', () {
     final mock = MockProduct();
 
     test('Assertions test', () {

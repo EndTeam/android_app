@@ -2,7 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ma_for_feip/products/mock_data/mock_named_size.dart';
 
 void main() {
-  group('Named color mock test', () {
+  group('Named size mock test', () {
     final mock = MockNamedSize();
 
     test('Assertions test', () {
