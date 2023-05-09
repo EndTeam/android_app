@@ -12,7 +12,7 @@ void main() {
     });
 
     test('Amounts test', () {
-      var colors = mock.genSizes();
+      var colors = mock.genSizes(1, 5);
       expect(colors.length, inInclusiveRange(1, 5));
 
       colors = mock.genSizes(5, 5);
