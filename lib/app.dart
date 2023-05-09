@@ -35,6 +35,7 @@ class _AppState extends State<App> {
 }
 
 final productMock = ProductModel(
+  id: 0,
   name: 'Жакет Weekend Max Mara ONDINA',
   images: [
     'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1'

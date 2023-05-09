@@ -21,7 +21,7 @@ NamedColorDTO _$NamedColorDTOFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NamedColorDTO {
   int get color => throw _privateConstructorUsedError;
-  int get label => throw _privateConstructorUsedError;
+  String get label => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $NamedColorDTOCopyWith<$Res> {
           NamedColorDTO value, $Res Function(NamedColorDTO) then) =
       _$NamedColorDTOCopyWithImpl<$Res, NamedColorDTO>;
   @useResult
-  $Res call({int color, int label});
+  $Res call({int color, String label});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$NamedColorDTOCopyWithImpl<$Res, $Val extends NamedColorDTO>
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ) as $Val);
   }
 }
@@ -75,7 +75,7 @@ abstract class _$$_NamedColorDTOCopyWith<$Res>
       __$$_NamedColorDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int color, int label});
+  $Res call({int color, String label});
 }
 
 /// @nodoc
@@ -100,7 +100,7 @@ class __$$_NamedColorDTOCopyWithImpl<$Res>
       label: null == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -116,7 +116,7 @@ class _$_NamedColorDTO implements _NamedColorDTO {
   @override
   final int color;
   @override
-  final int label;
+  final String label;
 
   @override
   String toString() {
@@ -152,7 +152,8 @@ class _$_NamedColorDTO implements _NamedColorDTO {
 
 abstract class _NamedColorDTO implements NamedColorDTO {
   const factory _NamedColorDTO(
-      {required final int color, required final int label}) = _$_NamedColorDTO;
+      {required final int color,
+      required final String label}) = _$_NamedColorDTO;
 
   factory _NamedColorDTO.fromJson(Map<String, dynamic> json) =
       _$_NamedColorDTO.fromJson;
@@ -160,7 +161,7 @@ abstract class _NamedColorDTO implements NamedColorDTO {
   @override
   int get color;
   @override
-  int get label;
+  String get label;
   @override
   @JsonKey(ignore: true)
   _$$_NamedColorDTOCopyWith<_$_NamedColorDTO> get copyWith =>

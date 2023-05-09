@@ -2,6 +2,7 @@ import 'package:ma_for_feip/products/models/named_color.dart';
 import 'package:ma_for_feip/products/models/named_size.dart';
 
 class ProductModel {
+  final int id;
   final String name;
   final List<String> images;
   final List<String> tags;
@@ -13,6 +14,7 @@ class ProductModel {
   final List<String> description;
 
   ProductModel({
+    required this.id,
     required this.name,
     required this.images,
     required this.tags,

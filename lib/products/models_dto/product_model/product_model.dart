@@ -9,6 +9,7 @@ part 'product_model.g.dart';
 @freezed
 class ProductModelDTO with _$ProductModelDTO {
   const factory ProductModelDTO({
+    required final int id,
     required final String name,
     required final List<String> images,
     required final List<String> tags,
