@@ -7,7 +7,7 @@ class MockNamedColor {
     assert(min >= 1);
     return faker.randomGenerator.amount(
       (i) => NamedColorDTO(
-        color: faker.randomGenerator.integer(0xFFFFFF, min: 0xFF000000),
+        color: faker.randomGenerator.integer(0xFFFFFFFF, min: 0xFF000000),
         label: faker.color.color(),
       ),
       max,
