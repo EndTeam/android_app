@@ -17,15 +17,15 @@ class BottomNav extends StatelessWidget {
               },
               child: SizedBox(
                 width: halfWidth,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(
                     vertical: ThemeInfo.verticalPadding,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
+                    children: [
                       Icon(Icons.manage_search),
                       Text(
                         'Каталог',
@@ -42,15 +42,15 @@ class BottomNav extends StatelessWidget {
               },
               child: SizedBox(
                 width: halfWidth,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(
                     vertical: ThemeInfo.verticalPadding,
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
+                    children: [
                       Icon(Icons.shopping_bag_outlined),
                       Text(
                         'Корзина',

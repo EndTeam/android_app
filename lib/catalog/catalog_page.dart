@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ma_for_feip/app.dart';
 import 'package:ma_for_feip/base_page_interface.dart';
 import 'package:ma_for_feip/catalog/models/category.dart';
 import 'package:ma_for_feip/catalog/widgets/category_grid.dart';
 import 'package:ma_for_feip/catalog/widgets/small_product_card.dart';
+import 'package:ma_for_feip/products/mapper/product_mapper.dart';
+import 'package:ma_for_feip/products/mock_data/mock_product.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
 import 'package:ma_for_feip/public_views/body_divider.dart';
 import 'package:ma_for_feip/theme_info.dart';
@@ -152,7 +153,8 @@ final cat = [
 ];
 
 final cp = {
-  cat[0]: [productMock, productMock, productMock],
-  cat[1]: [productMock, productMock, productMock, productMock],
-  cat[2]: [productMock, productMock, productMock, productMock, productMock],
+  cat[0]: MockProduct()
+      .genProducts(10, 10)
+      .map((e) => ProductMapper.fromSource(e))
+      .toList(),
 };
