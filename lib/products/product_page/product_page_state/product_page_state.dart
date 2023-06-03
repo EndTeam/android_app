@@ -13,4 +13,8 @@ class ProductPageState with _$ProductPageState {
     required NamedColor color,
     required NamedSize size,
   }) = _ProductPageState;
+
+  const factory ProductPageState.loading() = Loading;
+
+  const factory ProductPageState.error({String? msg}) = Error;
 }

@@ -27,8 +27,8 @@ class SmallProductCard extends StatelessWidget {
       child: InkWell(
         onTap: () => context.go(
           context.namedLocation(
-            AppRoutes.product.routeName,
-            params: {'productID': 0.toString()},
+            AppRoutes.product.name,
+            params: {'productID': product.id.toString()},
           ),
         ),
         child: Column(

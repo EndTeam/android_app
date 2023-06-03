@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ma_for_feip/app.dart';
 import 'package:ma_for_feip/main_page/home_page.dart';
 import 'package:ma_for_feip/products/product_page/product_page.dart';
 import 'package:ma_for_feip/router/routes.dart';
@@ -50,7 +49,8 @@ class AppRouter {
             path: '${AppRoutes.product.name}/:productID',
             name: AppRoutes.product.name,
             builder: (context, state) {
-              return ProductPage(productMock);
+              int id = int.parse(state.params['productID'] ?? '0');
+              return ProductPage(id);
             },
           ),
           GoRoute(

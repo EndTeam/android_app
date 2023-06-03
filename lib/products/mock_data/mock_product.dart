@@ -17,16 +17,9 @@ class MockProduct {
 
   ProductModelDTO _genNextProduct(int id) {
     final name = faker.company.name();
-    final images = faker.randomGenerator.amount(
-      (i) => faker.image.image(
-        width: 600,
-        height: 300,
-        keywords: ['wear', 'clothes'],
-        random: true,
-      ),
-      10,
-      min: 1,
-    );
+    final images = [
+      'https://shop-cdn1-2.vigbo.tech/shops/49937/products/19627396/images/2-53ebac4df3bdde822da29161dc662a61.JPG'
+    ];
     final tags = faker.randomGenerator.amount<String>(
       (i) => faker.randomGenerator.string(20),
       10,
