@@ -8,13 +8,13 @@ class ConnectivitySnackBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.listen(AppLocator.instance.connectivityProvider, (previous, next) {
-      if (previous == null || previous == false && next == true) {
+      if (previous != false && next == false) {
         const snack = SnackBar(
           content: Text('Кажется, что нет интернета'),
         );
         ScaffoldMessenger.of(context).showSnackBar(snack);
       }
     });
-    return const Placeholder();
+    return Container();
   }
 }
