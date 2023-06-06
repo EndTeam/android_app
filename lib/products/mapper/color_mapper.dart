@@ -4,6 +4,6 @@ import 'package:ma_for_feip/products/models_dto/named_color/named_color.dart';
 
 class ColorMapper {
   static NamedColor fromSource(NamedColorDTO dto) {
-    return NamedColor(Color(dto.color), dto.label);
+    return NamedColor(dto.id, Color(dto.color), dto.name);
   }
 }

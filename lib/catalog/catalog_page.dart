@@ -121,34 +121,50 @@ final cat = [
   Category(
     'Пальто',
     'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
+    0,
+    1,
   ),
   Category(
     'Платья',
     'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
+    0,
+    1,
   ),
   Category(
     'Одежда',
     'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
+    0,
+    1,
   ),
   Category(
     'Верхняя одежда',
     'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
+    0,
+    1,
   ),
   Category(
     'Сумки',
     'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
+    0,
+    1,
   ),
   Category(
     'Обувь',
     'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
+    0,
+    1,
   ),
   Category(
     'Аксессуары',
     'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
+    0,
+    1,
   ),
   Category(
     'Идеи для подарков',
     'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
+    0,
+    1,
   ),
 ];
 

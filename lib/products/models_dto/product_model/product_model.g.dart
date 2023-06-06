@@ -10,33 +10,36 @@ _$_ProductModelDTO _$$_ProductModelDTOFromJson(Map<String, dynamic> json) =>
     _$_ProductModelDTO(
       id: json['id'] as int,
       name: json['name'] as String,
-      images:
-          (json['images'] as List<dynamic>).map((e) => e as String).toList(),
-      tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
-      isNew: json['isNew'] as bool,
-      cost: json['cost'] as int,
-      oldCost: json['oldCost'] as int?,
-      colors: (json['colors'] as List<dynamic>)
-          .map((e) => NamedColorDTO.fromJson(e as Map<String, dynamic>))
+      article: json['article'] as String,
+      isNew: json['new'] as bool,
+      sale: json['sale'] as bool,
+      cost: (json['cost'] as num).toDouble(),
+      saleCost: (json['sale_cost'] as num?)?.toDouble(),
+      imageColor: (json['image_color'] as List<dynamic>)
+          .map((e) => ImageColorDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
-      sizes: (json['sizes'] as List<dynamic>)
+      size: (json['size'] as List<dynamic>)
           .map((e) => NamedSizeDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
-      description: (json['description'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
+      description: json['description'] as String,
+      brand: BrandDTO.fromJson(json['brand'] as Map<String, dynamic>),
+      category: CategoryDTO.fromJson(json['category'] as Map<String, dynamic>),
+      isFavorite: json['is_favorite'] as bool,
     );
 
 Map<String, dynamic> _$$_ProductModelDTOToJson(_$_ProductModelDTO instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'images': instance.images,
-      'tags': instance.tags,
-      'isNew': instance.isNew,
+      'article': instance.article,
+      'new': instance.isNew,
+      'sale': instance.sale,
       'cost': instance.cost,
-      'oldCost': instance.oldCost,
-      'colors': instance.colors,
-      'sizes': instance.sizes,
+      'sale_cost': instance.saleCost,
+      'image_color': instance.imageColor,
+      'size': instance.size,
       'description': instance.description,
+      'brand': instance.brand,
+      'category': instance.category,
+      'is_favorite': instance.isFavorite,
     };

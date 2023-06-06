@@ -22,14 +22,22 @@ ProductModelDTO _$ProductModelDTOFromJson(Map<String, dynamic> json) {
 mixin _$ProductModelDTO {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  List<String> get images => throw _privateConstructorUsedError;
-  List<String> get tags => throw _privateConstructorUsedError;
+  String get article => throw _privateConstructorUsedError;
+  @JsonKey(name: 'new')
   bool get isNew => throw _privateConstructorUsedError;
-  int get cost => throw _privateConstructorUsedError;
-  int? get oldCost => throw _privateConstructorUsedError;
-  List<NamedColorDTO> get colors => throw _privateConstructorUsedError;
-  List<NamedSizeDTO> get sizes => throw _privateConstructorUsedError;
-  List<String> get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sale')
+  bool get sale => throw _privateConstructorUsedError;
+  double get cost => throw _privateConstructorUsedError;
+  @JsonKey(name: 'sale_cost')
+  double? get saleCost => throw _privateConstructorUsedError;
+  @JsonKey(name: 'image_color')
+  List<ImageColorDTO> get imageColor => throw _privateConstructorUsedError;
+  List<NamedSizeDTO> get size => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+  BrandDTO get brand => throw _privateConstructorUsedError;
+  CategoryDTO get category => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_favorite')
+  bool get isFavorite => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,14 +54,20 @@ abstract class $ProductModelDTOCopyWith<$Res> {
   $Res call(
       {int id,
       String name,
-      List<String> images,
-      List<String> tags,
-      bool isNew,
-      int cost,
-      int? oldCost,
-      List<NamedColorDTO> colors,
-      List<NamedSizeDTO> sizes,
-      List<String> description});
+      String article,
+      @JsonKey(name: 'new') bool isNew,
+      @JsonKey(name: 'sale') bool sale,
+      double cost,
+      @JsonKey(name: 'sale_cost') double? saleCost,
+      @JsonKey(name: 'image_color') List<ImageColorDTO> imageColor,
+      List<NamedSizeDTO> size,
+      String description,
+      BrandDTO brand,
+      CategoryDTO category,
+      @JsonKey(name: 'is_favorite') bool isFavorite});
+
+  $BrandDTOCopyWith<$Res> get brand;
+  $CategoryDTOCopyWith<$Res> get category;
 }
 
 /// @nodoc
@@ -71,14 +85,17 @@ class _$ProductModelDTOCopyWithImpl<$Res, $Val extends ProductModelDTO>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? images = null,
-    Object? tags = null,
+    Object? article = null,
     Object? isNew = null,
+    Object? sale = null,
     Object? cost = null,
-    Object? oldCost = freezed,
-    Object? colors = null,
-    Object? sizes = null,
+    Object? saleCost = freezed,
+    Object? imageColor = null,
+    Object? size = null,
     Object? description = null,
+    Object? brand = null,
+    Object? category = null,
+    Object? isFavorite = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -89,39 +106,67 @@ class _$ProductModelDTOCopyWithImpl<$Res, $Val extends ProductModelDTO>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      images: null == images
-          ? _value.images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      tags: null == tags
-          ? _value.tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      article: null == article
+          ? _value.article
+          : article // ignore: cast_nullable_to_non_nullable
+              as String,
       isNew: null == isNew
           ? _value.isNew
           : isNew // ignore: cast_nullable_to_non_nullable
               as bool,
+      sale: null == sale
+          ? _value.sale
+          : sale // ignore: cast_nullable_to_non_nullable
+              as bool,
       cost: null == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
-              as int,
-      oldCost: freezed == oldCost
-          ? _value.oldCost
-          : oldCost // ignore: cast_nullable_to_non_nullable
-              as int?,
-      colors: null == colors
-          ? _value.colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as List<NamedColorDTO>,
-      sizes: null == sizes
-          ? _value.sizes
-          : sizes // ignore: cast_nullable_to_non_nullable
+              as double,
+      saleCost: freezed == saleCost
+          ? _value.saleCost
+          : saleCost // ignore: cast_nullable_to_non_nullable
+              as double?,
+      imageColor: null == imageColor
+          ? _value.imageColor
+          : imageColor // ignore: cast_nullable_to_non_nullable
+              as List<ImageColorDTO>,
+      size: null == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
               as List<NamedSizeDTO>,
       description: null == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as String,
+      brand: null == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as BrandDTO,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryDTO,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $BrandDTOCopyWith<$Res> get brand {
+    return $BrandDTOCopyWith<$Res>(_value.brand, (value) {
+      return _then(_value.copyWith(brand: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryDTOCopyWith<$Res> get category {
+    return $CategoryDTOCopyWith<$Res>(_value.category, (value) {
+      return _then(_value.copyWith(category: value) as $Val);
+    });
   }
 }
 
@@ -136,14 +181,22 @@ abstract class _$$_ProductModelDTOCopyWith<$Res>
   $Res call(
       {int id,
       String name,
-      List<String> images,
-      List<String> tags,
-      bool isNew,
-      int cost,
-      int? oldCost,
-      List<NamedColorDTO> colors,
-      List<NamedSizeDTO> sizes,
-      List<String> description});
+      String article,
+      @JsonKey(name: 'new') bool isNew,
+      @JsonKey(name: 'sale') bool sale,
+      double cost,
+      @JsonKey(name: 'sale_cost') double? saleCost,
+      @JsonKey(name: 'image_color') List<ImageColorDTO> imageColor,
+      List<NamedSizeDTO> size,
+      String description,
+      BrandDTO brand,
+      CategoryDTO category,
+      @JsonKey(name: 'is_favorite') bool isFavorite});
+
+  @override
+  $BrandDTOCopyWith<$Res> get brand;
+  @override
+  $CategoryDTOCopyWith<$Res> get category;
 }
 
 /// @nodoc
@@ -159,14 +212,17 @@ class __$$_ProductModelDTOCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? images = null,
-    Object? tags = null,
+    Object? article = null,
     Object? isNew = null,
+    Object? sale = null,
     Object? cost = null,
-    Object? oldCost = freezed,
-    Object? colors = null,
-    Object? sizes = null,
+    Object? saleCost = freezed,
+    Object? imageColor = null,
+    Object? size = null,
     Object? description = null,
+    Object? brand = null,
+    Object? category = null,
+    Object? isFavorite = null,
   }) {
     return _then(_$_ProductModelDTO(
       id: null == id
@@ -177,38 +233,50 @@ class __$$_ProductModelDTOCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      images: null == images
-          ? _value._images
-          : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      tags: null == tags
-          ? _value._tags
-          : tags // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      article: null == article
+          ? _value.article
+          : article // ignore: cast_nullable_to_non_nullable
+              as String,
       isNew: null == isNew
           ? _value.isNew
           : isNew // ignore: cast_nullable_to_non_nullable
               as bool,
+      sale: null == sale
+          ? _value.sale
+          : sale // ignore: cast_nullable_to_non_nullable
+              as bool,
       cost: null == cost
           ? _value.cost
           : cost // ignore: cast_nullable_to_non_nullable
-              as int,
-      oldCost: freezed == oldCost
-          ? _value.oldCost
-          : oldCost // ignore: cast_nullable_to_non_nullable
-              as int?,
-      colors: null == colors
-          ? _value._colors
-          : colors // ignore: cast_nullable_to_non_nullable
-              as List<NamedColorDTO>,
-      sizes: null == sizes
-          ? _value._sizes
-          : sizes // ignore: cast_nullable_to_non_nullable
+              as double,
+      saleCost: freezed == saleCost
+          ? _value.saleCost
+          : saleCost // ignore: cast_nullable_to_non_nullable
+              as double?,
+      imageColor: null == imageColor
+          ? _value._imageColor
+          : imageColor // ignore: cast_nullable_to_non_nullable
+              as List<ImageColorDTO>,
+      size: null == size
+          ? _value._size
+          : size // ignore: cast_nullable_to_non_nullable
               as List<NamedSizeDTO>,
       description: null == description
-          ? _value._description
+          ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as String,
+      brand: null == brand
+          ? _value.brand
+          : brand // ignore: cast_nullable_to_non_nullable
+              as BrandDTO,
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as CategoryDTO,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -219,19 +287,24 @@ class _$_ProductModelDTO implements _ProductModelDTO {
   const _$_ProductModelDTO(
       {required this.id,
       required this.name,
-      required final List<String> images,
-      required final List<String> tags,
-      required this.isNew,
+      required this.article,
+      @JsonKey(name: 'new')
+          required this.isNew,
+      @JsonKey(name: 'sale')
+          required this.sale,
       required this.cost,
-      required this.oldCost,
-      required final List<NamedColorDTO> colors,
-      required final List<NamedSizeDTO> sizes,
-      required final List<String> description})
-      : _images = images,
-        _tags = tags,
-        _colors = colors,
-        _sizes = sizes,
-        _description = description;
+      @JsonKey(name: 'sale_cost')
+          this.saleCost,
+      @JsonKey(name: 'image_color')
+          required final List<ImageColorDTO> imageColor,
+      required final List<NamedSizeDTO> size,
+      required this.description,
+      required this.brand,
+      required this.category,
+      @JsonKey(name: 'is_favorite')
+          required this.isFavorite})
+      : _imageColor = imageColor,
+        _size = size;
 
   factory _$_ProductModelDTO.fromJson(Map<String, dynamic> json) =>
       _$$_ProductModelDTOFromJson(json);
@@ -240,55 +313,49 @@ class _$_ProductModelDTO implements _ProductModelDTO {
   final int id;
   @override
   final String name;
-  final List<String> _images;
   @override
-  List<String> get images {
-    if (_images is EqualUnmodifiableListView) return _images;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_images);
-  }
-
-  final List<String> _tags;
+  final String article;
   @override
-  List<String> get tags {
-    if (_tags is EqualUnmodifiableListView) return _tags;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_tags);
-  }
-
-  @override
+  @JsonKey(name: 'new')
   final bool isNew;
   @override
-  final int cost;
+  @JsonKey(name: 'sale')
+  final bool sale;
   @override
-  final int? oldCost;
-  final List<NamedColorDTO> _colors;
+  final double cost;
   @override
-  List<NamedColorDTO> get colors {
-    if (_colors is EqualUnmodifiableListView) return _colors;
+  @JsonKey(name: 'sale_cost')
+  final double? saleCost;
+  final List<ImageColorDTO> _imageColor;
+  @override
+  @JsonKey(name: 'image_color')
+  List<ImageColorDTO> get imageColor {
+    if (_imageColor is EqualUnmodifiableListView) return _imageColor;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_colors);
+    return EqualUnmodifiableListView(_imageColor);
   }
 
-  final List<NamedSizeDTO> _sizes;
+  final List<NamedSizeDTO> _size;
   @override
-  List<NamedSizeDTO> get sizes {
-    if (_sizes is EqualUnmodifiableListView) return _sizes;
+  List<NamedSizeDTO> get size {
+    if (_size is EqualUnmodifiableListView) return _size;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_sizes);
+    return EqualUnmodifiableListView(_size);
   }
 
-  final List<String> _description;
   @override
-  List<String> get description {
-    if (_description is EqualUnmodifiableListView) return _description;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_description);
-  }
+  final String description;
+  @override
+  final BrandDTO brand;
+  @override
+  final CategoryDTO category;
+  @override
+  @JsonKey(name: 'is_favorite')
+  final bool isFavorite;
 
   @override
   String toString() {
-    return 'ProductModelDTO(id: $id, name: $name, images: $images, tags: $tags, isNew: $isNew, cost: $cost, oldCost: $oldCost, colors: $colors, sizes: $sizes, description: $description)';
+    return 'ProductModelDTO(id: $id, name: $name, article: $article, isNew: $isNew, sale: $sale, cost: $cost, saleCost: $saleCost, imageColor: $imageColor, size: $size, description: $description, brand: $brand, category: $category, isFavorite: $isFavorite)';
   }
 
   @override
@@ -298,15 +365,22 @@ class _$_ProductModelDTO implements _ProductModelDTO {
             other is _$_ProductModelDTO &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._images, _images) &&
-            const DeepCollectionEquality().equals(other._tags, _tags) &&
+            (identical(other.article, article) || other.article == article) &&
             (identical(other.isNew, isNew) || other.isNew == isNew) &&
+            (identical(other.sale, sale) || other.sale == sale) &&
             (identical(other.cost, cost) || other.cost == cost) &&
-            (identical(other.oldCost, oldCost) || other.oldCost == oldCost) &&
-            const DeepCollectionEquality().equals(other._colors, _colors) &&
-            const DeepCollectionEquality().equals(other._sizes, _sizes) &&
+            (identical(other.saleCost, saleCost) ||
+                other.saleCost == saleCost) &&
             const DeepCollectionEquality()
-                .equals(other._description, _description));
+                .equals(other._imageColor, _imageColor) &&
+            const DeepCollectionEquality().equals(other._size, _size) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.brand, brand) || other.brand == brand) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite));
   }
 
   @JsonKey(ignore: true)
@@ -315,14 +389,17 @@ class _$_ProductModelDTO implements _ProductModelDTO {
       runtimeType,
       id,
       name,
-      const DeepCollectionEquality().hash(_images),
-      const DeepCollectionEquality().hash(_tags),
+      article,
       isNew,
+      sale,
       cost,
-      oldCost,
-      const DeepCollectionEquality().hash(_colors),
-      const DeepCollectionEquality().hash(_sizes),
-      const DeepCollectionEquality().hash(_description));
+      saleCost,
+      const DeepCollectionEquality().hash(_imageColor),
+      const DeepCollectionEquality().hash(_size),
+      description,
+      brand,
+      category,
+      isFavorite);
 
   @JsonKey(ignore: true)
   @override
@@ -342,14 +419,22 @@ abstract class _ProductModelDTO implements ProductModelDTO {
   const factory _ProductModelDTO(
       {required final int id,
       required final String name,
-      required final List<String> images,
-      required final List<String> tags,
-      required final bool isNew,
-      required final int cost,
-      required final int? oldCost,
-      required final List<NamedColorDTO> colors,
-      required final List<NamedSizeDTO> sizes,
-      required final List<String> description}) = _$_ProductModelDTO;
+      required final String article,
+      @JsonKey(name: 'new')
+          required final bool isNew,
+      @JsonKey(name: 'sale')
+          required final bool sale,
+      required final double cost,
+      @JsonKey(name: 'sale_cost')
+          final double? saleCost,
+      @JsonKey(name: 'image_color')
+          required final List<ImageColorDTO> imageColor,
+      required final List<NamedSizeDTO> size,
+      required final String description,
+      required final BrandDTO brand,
+      required final CategoryDTO category,
+      @JsonKey(name: 'is_favorite')
+          required final bool isFavorite}) = _$_ProductModelDTO;
 
   factory _ProductModelDTO.fromJson(Map<String, dynamic> json) =
       _$_ProductModelDTO.fromJson;
@@ -359,21 +444,32 @@ abstract class _ProductModelDTO implements ProductModelDTO {
   @override
   String get name;
   @override
-  List<String> get images;
+  String get article;
   @override
-  List<String> get tags;
-  @override
+  @JsonKey(name: 'new')
   bool get isNew;
   @override
-  int get cost;
+  @JsonKey(name: 'sale')
+  bool get sale;
   @override
-  int? get oldCost;
+  double get cost;
   @override
-  List<NamedColorDTO> get colors;
+  @JsonKey(name: 'sale_cost')
+  double? get saleCost;
   @override
-  List<NamedSizeDTO> get sizes;
+  @JsonKey(name: 'image_color')
+  List<ImageColorDTO> get imageColor;
   @override
-  List<String> get description;
+  List<NamedSizeDTO> get size;
+  @override
+  String get description;
+  @override
+  BrandDTO get brand;
+  @override
+  CategoryDTO get category;
+  @override
+  @JsonKey(name: 'is_favorite')
+  bool get isFavorite;
   @override
   @JsonKey(ignore: true)
   _$$_ProductModelDTOCopyWith<_$_ProductModelDTO> get copyWith =>

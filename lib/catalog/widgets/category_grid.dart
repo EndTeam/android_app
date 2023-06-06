@@ -48,10 +48,16 @@ class CategoryItem extends StatelessWidget {
                 child: SizedBox(
                   width: constraints.maxWidth,
                   height: constraints.maxWidth,
-                  child: Image.network(
-                    category.image,
-                    fit: BoxFit.cover,
-                  ),
+                  child: category.image == null
+                      ? Image.network(
+                          category.image!,
+                          fit: BoxFit.cover,
+                        )
+                      : Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          color: Colors.grey,
+                        ),
                 ),
               ),
             ),

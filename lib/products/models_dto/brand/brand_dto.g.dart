@@ -1,19 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'named_size.dart';
+part of 'brand_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_NamedSizeDTO _$$_NamedSizeDTOFromJson(Map<String, dynamic> json) =>
-    _$_NamedSizeDTO(
+_$_BrandDTO _$$_BrandDTOFromJson(Map<String, dynamic> json) => _$_BrandDTO(
       id: json['id'] as int,
-      size: json['size'] as String,
+      name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$_NamedSizeDTOToJson(_$_NamedSizeDTO instance) =>
+Map<String, dynamic> _$$_BrandDTOToJson(_$_BrandDTO instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'size': instance.size,
+      'name': instance.name,
     };

@@ -11,7 +11,7 @@ class MockNamedSize {
 
     final newList = List.from(_sizeList, growable: false)..shuffle();
     return faker.randomGenerator.amount(
-      (i) => NamedSizeDTO(label: newList[i]),
+      (i) => NamedSizeDTO(id: i, size: newList[i]),
       max,
       min: min,
     );

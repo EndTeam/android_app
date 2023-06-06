@@ -20,7 +20,8 @@ NamedSizeDTO _$NamedSizeDTOFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NamedSizeDTO {
-  String get label => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  String get size => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $NamedSizeDTOCopyWith<$Res> {
           NamedSizeDTO value, $Res Function(NamedSizeDTO) then) =
       _$NamedSizeDTOCopyWithImpl<$Res, NamedSizeDTO>;
   @useResult
-  $Res call({String label});
+  $Res call({int id, String size});
 }
 
 /// @nodoc
@@ -50,12 +51,17 @@ class _$NamedSizeDTOCopyWithImpl<$Res, $Val extends NamedSizeDTO>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? label = null,
+    Object? id = null,
+    Object? size = null,
   }) {
     return _then(_value.copyWith(
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      size: null == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -69,7 +75,7 @@ abstract class _$$_NamedSizeDTOCopyWith<$Res>
       __$$_NamedSizeDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String label});
+  $Res call({int id, String size});
 }
 
 /// @nodoc
@@ -83,12 +89,17 @@ class __$$_NamedSizeDTOCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? label = null,
+    Object? id = null,
+    Object? size = null,
   }) {
     return _then(_$_NamedSizeDTO(
-      label: null == label
-          ? _value.label
-          : label // ignore: cast_nullable_to_non_nullable
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      size: null == size
+          ? _value.size
+          : size // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -97,17 +108,19 @@ class __$$_NamedSizeDTOCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_NamedSizeDTO implements _NamedSizeDTO {
-  const _$_NamedSizeDTO({required this.label});
+  const _$_NamedSizeDTO({required this.id, required this.size});
 
   factory _$_NamedSizeDTO.fromJson(Map<String, dynamic> json) =>
       _$$_NamedSizeDTOFromJson(json);
 
   @override
-  final String label;
+  final int id;
+  @override
+  final String size;
 
   @override
   String toString() {
-    return 'NamedSizeDTO(label: $label)';
+    return 'NamedSizeDTO(id: $id, size: $size)';
   }
 
   @override
@@ -115,12 +128,13 @@ class _$_NamedSizeDTO implements _NamedSizeDTO {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_NamedSizeDTO &&
-            (identical(other.label, label) || other.label == label));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.size, size) || other.size == size));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, label);
+  int get hashCode => Object.hash(runtimeType, id, size);
 
   @JsonKey(ignore: true)
   @override
@@ -137,13 +151,16 @@ class _$_NamedSizeDTO implements _NamedSizeDTO {
 }
 
 abstract class _NamedSizeDTO implements NamedSizeDTO {
-  const factory _NamedSizeDTO({required final String label}) = _$_NamedSizeDTO;
+  const factory _NamedSizeDTO(
+      {required final int id, required final String size}) = _$_NamedSizeDTO;
 
   factory _NamedSizeDTO.fromJson(Map<String, dynamic> json) =
       _$_NamedSizeDTO.fromJson;
 
   @override
-  String get label;
+  int get id;
+  @override
+  String get size;
   @override
   @JsonKey(ignore: true)
   _$$_NamedSizeDTOCopyWith<_$_NamedSizeDTO> get copyWith =>

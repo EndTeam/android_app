@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'named_color.dart';
+part of 'brand_dto.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,35 +14,33 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-NamedColorDTO _$NamedColorDTOFromJson(Map<String, dynamic> json) {
-  return _NamedColorDTO.fromJson(json);
+BrandDTO _$BrandDTOFromJson(Map<String, dynamic> json) {
+  return _BrandDTO.fromJson(json);
 }
 
 /// @nodoc
-mixin _$NamedColorDTO {
+mixin _$BrandDTO {
   int get id => throw _privateConstructorUsedError;
-  int get color => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $NamedColorDTOCopyWith<NamedColorDTO> get copyWith =>
+  $BrandDTOCopyWith<BrandDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $NamedColorDTOCopyWith<$Res> {
-  factory $NamedColorDTOCopyWith(
-          NamedColorDTO value, $Res Function(NamedColorDTO) then) =
-      _$NamedColorDTOCopyWithImpl<$Res, NamedColorDTO>;
+abstract class $BrandDTOCopyWith<$Res> {
+  factory $BrandDTOCopyWith(BrandDTO value, $Res Function(BrandDTO) then) =
+      _$BrandDTOCopyWithImpl<$Res, BrandDTO>;
   @useResult
-  $Res call({int id, int color, String name});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
-class _$NamedColorDTOCopyWithImpl<$Res, $Val extends NamedColorDTO>
-    implements $NamedColorDTOCopyWith<$Res> {
-  _$NamedColorDTOCopyWithImpl(this._value, this._then);
+class _$BrandDTOCopyWithImpl<$Res, $Val extends BrandDTO>
+    implements $BrandDTOCopyWith<$Res> {
+  _$BrandDTOCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -53,17 +51,12 @@ class _$NamedColorDTOCopyWithImpl<$Res, $Val extends NamedColorDTO>
   @override
   $Res call({
     Object? id = null,
-    Object? color = null,
     Object? name = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
@@ -74,39 +67,33 @@ class _$NamedColorDTOCopyWithImpl<$Res, $Val extends NamedColorDTO>
 }
 
 /// @nodoc
-abstract class _$$_NamedColorDTOCopyWith<$Res>
-    implements $NamedColorDTOCopyWith<$Res> {
-  factory _$$_NamedColorDTOCopyWith(
-          _$_NamedColorDTO value, $Res Function(_$_NamedColorDTO) then) =
-      __$$_NamedColorDTOCopyWithImpl<$Res>;
+abstract class _$$_BrandDTOCopyWith<$Res> implements $BrandDTOCopyWith<$Res> {
+  factory _$$_BrandDTOCopyWith(
+          _$_BrandDTO value, $Res Function(_$_BrandDTO) then) =
+      __$$_BrandDTOCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, int color, String name});
+  $Res call({int id, String name});
 }
 
 /// @nodoc
-class __$$_NamedColorDTOCopyWithImpl<$Res>
-    extends _$NamedColorDTOCopyWithImpl<$Res, _$_NamedColorDTO>
-    implements _$$_NamedColorDTOCopyWith<$Res> {
-  __$$_NamedColorDTOCopyWithImpl(
-      _$_NamedColorDTO _value, $Res Function(_$_NamedColorDTO) _then)
+class __$$_BrandDTOCopyWithImpl<$Res>
+    extends _$BrandDTOCopyWithImpl<$Res, _$_BrandDTO>
+    implements _$$_BrandDTOCopyWith<$Res> {
+  __$$_BrandDTOCopyWithImpl(
+      _$_BrandDTO _value, $Res Function(_$_BrandDTO) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
-    Object? color = null,
     Object? name = null,
   }) {
-    return _then(_$_NamedColorDTO(
+    return _then(_$_BrandDTO(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
               as int,
       name: null == name
           ? _value.name
@@ -118,70 +105,61 @@ class __$$_NamedColorDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_NamedColorDTO implements _NamedColorDTO {
-  const _$_NamedColorDTO(
-      {required this.id, required this.color, required this.name});
+class _$_BrandDTO implements _BrandDTO {
+  const _$_BrandDTO({required this.id, required this.name});
 
-  factory _$_NamedColorDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_NamedColorDTOFromJson(json);
+  factory _$_BrandDTO.fromJson(Map<String, dynamic> json) =>
+      _$$_BrandDTOFromJson(json);
 
   @override
   final int id;
-  @override
-  final int color;
   @override
   final String name;
 
   @override
   String toString() {
-    return 'NamedColorDTO(id: $id, color: $color, name: $name)';
+    return 'BrandDTO(id: $id, name: $name)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_NamedColorDTO &&
+            other is _$_BrandDTO &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.color, color) || other.color == color) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, color, name);
+  int get hashCode => Object.hash(runtimeType, id, name);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_NamedColorDTOCopyWith<_$_NamedColorDTO> get copyWith =>
-      __$$_NamedColorDTOCopyWithImpl<_$_NamedColorDTO>(this, _$identity);
+  _$$_BrandDTOCopyWith<_$_BrandDTO> get copyWith =>
+      __$$_BrandDTOCopyWithImpl<_$_BrandDTO>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_NamedColorDTOToJson(
+    return _$$_BrandDTOToJson(
       this,
     );
   }
 }
 
-abstract class _NamedColorDTO implements NamedColorDTO {
-  const factory _NamedColorDTO(
-      {required final int id,
-      required final int color,
-      required final String name}) = _$_NamedColorDTO;
+abstract class _BrandDTO implements BrandDTO {
+  const factory _BrandDTO({required final int id, required final String name}) =
+      _$_BrandDTO;
 
-  factory _NamedColorDTO.fromJson(Map<String, dynamic> json) =
-      _$_NamedColorDTO.fromJson;
+  factory _BrandDTO.fromJson(Map<String, dynamic> json) = _$_BrandDTO.fromJson;
 
   @override
   int get id;
   @override
-  int get color;
-  @override
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$_NamedColorDTOCopyWith<_$_NamedColorDTO> get copyWith =>
+  _$$_BrandDTOCopyWith<_$_BrandDTO> get copyWith =>
       throw _privateConstructorUsedError;
 }
