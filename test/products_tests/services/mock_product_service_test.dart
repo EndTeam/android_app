@@ -6,12 +6,12 @@ void main() {
     final service = MockProductsService();
 
     test('Generate products test', () async {
-      final products = await service.getProducts();
+      final products = await service.getProducts(0);
       expect(products.length, isPositive);
     });
 
     test('Get product by id', () async {
-      final products = await service.getProducts();
+      final products = await service.getProducts(0);
       for (var prod in products) {
         final byId = await service.getProductByID(prod.id);
         expect(byId, prod);

@@ -12,8 +12,14 @@ class ProductsRepository extends AbstractProductRepository {
   }
 
   @override
-  Future<List<ProductModel>> getProducts() async {
-    final products = await serivce.getProducts();
+  Future<List<ProductModel>> getProducts(int categoryID) async {
+    final products = await serivce.getProducts(categoryID);
+    return products.map((p) => ProductMapper.fromSource(p)).toList();
+  }
+
+  @override
+  Future<List<ProductModel>> getMainCatProducts(int categoryID) async {
+    final products = await serivce.getMainCatProducts(categoryID);
     return products.map((p) => ProductMapper.fromSource(p)).toList();
   }
 }

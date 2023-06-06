@@ -6,7 +6,9 @@ abstract class AbstractProductRepository {
 
   AbstractProductRepository(this.serivce);
 
-  Future<List<ProductModel>> getProducts();
+  Future<List<ProductModel>> getProducts(int categoryID);
+
+  Future<List<ProductModel>> getMainCatProducts(int categoryID);
 
   Future<ProductModel> getProductByID(int id);
 }

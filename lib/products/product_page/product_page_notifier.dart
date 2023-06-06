@@ -10,8 +10,7 @@ class ProductPageNotifier extends StateNotifier<ProductPageState> {
   final int _id;
   final AbstractProductRepository _repo;
 
-  ProductPageNotifier(this._id, this._repo)
-      : super(const ProductPageState.loading()) {
+  ProductPageNotifier(this._id, this._repo) : super(const ProductPageState.loading()) {
     _loadProduct();
   }
 
@@ -40,8 +39,9 @@ class ProductPageNotifier extends StateNotifier<ProductPageState> {
         ),
       );
     } catch (e, s) {
-      _updateState(const ProductPageState.error(
-          msg: 'Что-то пошло не так')); // TODO: add errors
+      _updateState(
+        const ProductPageState.error(msg: 'Что-то пошло не так'),
+      ); // TODO: add errors
       debugPrint(e.toString());
       debugPrintStack(stackTrace: s);
     }

@@ -11,13 +11,13 @@ class MockProductsService extends AbstractProductsService {
   @override
   Future<ProductModelDTO> getProductByID(int id) async {
     if (_products == null && kDebugMode) {
-      getProducts();
+      getProducts(0);
     }
     return Future(() => _products![id]);
   }
 
   @override
-  Future<List<ProductModelDTO>> getProducts() {
+  Future<List<ProductModelDTO>> getProducts(int categoryID) {
     _products ??= _mock.genProducts(10);
     return Future(() => _products!);
   }

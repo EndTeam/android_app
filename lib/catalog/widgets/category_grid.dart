@@ -1,10 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:ma_for_feip/catalog/models/category.dart';
+import 'package:ma_for_feip/catalog/models/main_category.dart';
 import 'package:ma_for_feip/theme_info.dart';
 
 class CategoriesGrid extends StatelessWidget {
-  final List<Category> categories;
+  final List<MainCategory> categories;
 
   const CategoriesGrid({super.key, required this.categories});
 
@@ -29,7 +30,7 @@ class CategoriesGrid extends StatelessWidget {
 }
 
 class CategoryItem extends StatelessWidget {
-  final Category category;
+  final MainCategory category;
 
   const CategoryItem({super.key, required this.category});
 
@@ -48,12 +49,14 @@ class CategoryItem extends StatelessWidget {
                 child: SizedBox(
                   width: constraints.maxWidth,
                   height: constraints.maxWidth,
-                  child: category.image == null
-                      ? Image.network(
-                          category.image!,
-                          fit: BoxFit.cover,
-                        )
-                      : Container(
+                  child:
+                  // category.image == null
+                  //     ? Image.network(
+                  //         category.image!,
+                  //         fit: BoxFit.cover,
+                  //       )
+                  //     :
+                  Container(
                           width: double.infinity,
                           height: double.infinity,
                           color: Colors.grey,

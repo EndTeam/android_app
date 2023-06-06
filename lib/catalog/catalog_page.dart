@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ma_for_feip/base_page_interface.dart';
 import 'package:ma_for_feip/catalog/models/category.dart';
+import 'package:ma_for_feip/catalog/models/main_category.dart';
 import 'package:ma_for_feip/catalog/widgets/category_grid.dart';
 import 'package:ma_for_feip/catalog/widgets/small_product_card.dart';
 import 'package:ma_for_feip/products/mapper/product_mapper.dart';
 import 'package:ma_for_feip/products/mock_data/mock_product.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
 import 'package:ma_for_feip/public_views/body_divider.dart';
+import 'package:ma_for_feip/service_locator/app_locator.dart';
 import 'package:ma_for_feip/theme_info.dart';
 
 class CatalogPage extends BasePageInterface {
@@ -29,11 +31,24 @@ class CatalogPage extends BasePageInterface {
       ),
       child: ListView(
         children: [
-          CategoriesGrid(categories: cat),
-          const BodyDivider(),
-          CategoryListWithItems(
-            categories: cp,
+          FutureBuilder(
+            future: cat,
+            builder: (BuildContext context, AsyncSnapshot<List<MainCategory>> snapshot) {
+              if (snapshot.hasData) {
+                return CategoriesGrid(categories: snapshot.data!);
+              }
+              return const CircularProgressIndicator();
+            },
           ),
+          const BodyDivider(),
+          FutureBuilder(builder: (context, AsyncSnapshot<Map<MainCategory, List<ProductModel>>> snapshot) {
+            if (snapshot.hasData) {
+              return CategoryListWithItems(
+                categories: snapshot.data!,
+              );
+            }
+            return const CircularProgressIndicator();
+          }),
         ],
       ),
     );
@@ -41,7 +56,7 @@ class CatalogPage extends BasePageInterface {
 }
 
 class CategoryListWithItems extends StatelessWidget {
-  final Map<Category, List<ProductModel>> categories;
+  final Map<MainCategory, List<ProductModel>> categories;
 
   const CategoryListWithItems({super.key, required this.categories});
 
@@ -56,7 +71,7 @@ class CategoryListWithItems extends StatelessWidget {
               vertical: ThemeInfo.inListSeparator,
             ),
             child: CategoryFlexCatalog(
-              category: element.key,
+              category: Category('', '', 1, 0),
               products: element.value,
             ),
           );
@@ -117,60 +132,18 @@ class CategoryFlexCatalog extends StatelessWidget {
   }
 }
 
-final cat = [
-  Category(
-    'Пальто',
-    'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
-    0,
-    1,
-  ),
-  Category(
-    'Платья',
-    'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
-    0,
-    1,
-  ),
-  Category(
-    'Одежда',
-    'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
-    0,
-    1,
-  ),
-  Category(
-    'Верхняя одежда',
-    'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
-    0,
-    1,
-  ),
-  Category(
-    'Сумки',
-    'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
-    0,
-    1,
-  ),
-  Category(
-    'Обувь',
-    'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
-    0,
-    1,
-  ),
-  Category(
-    'Аксессуары',
-    'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
-    0,
-    1,
-  ),
-  Category(
-    'Идеи для подарков',
-    'https://sheily.ru/wp-content/webpc-passthru.php?src=https://sheily.ru/wp-content/uploads/2020/11/334-115-kemel-1.jpg&nocache=1',
-    0,
-    1,
-  ),
-];
-
-final cp = {
-  cat[0]: MockProduct()
-      .genProducts(10, 10)
-      .map((e) => ProductMapper.fromSource(e))
-      .toList(),
-};
+final cat = AppLocator.instance.categoryRepository.getMainCategories();
+Future<Map<MainCategory, dynamic>> products = cat.then((value) async {
+  final Map<MainCategory, dynamic> pr = {};
+  print(value);
+  value.map((e) async => pr[e] = await AppLocator.instance.productsRepository.getMainCatProducts(e.id));
+  print(pr.values);
+  return pr;
+});
+//
+// final cp = {
+//   cat[0]: MockProduct()
+//       .genProducts(10, 10)
+//       .map((e) => ProductMapper.fromSource(e))
+//       .toList(),
+// };
