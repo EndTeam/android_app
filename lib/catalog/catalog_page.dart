@@ -4,8 +4,6 @@ import 'package:ma_for_feip/catalog/models/category.dart';
 import 'package:ma_for_feip/catalog/models/main_category.dart';
 import 'package:ma_for_feip/catalog/widgets/category_grid.dart';
 import 'package:ma_for_feip/catalog/widgets/small_product_card.dart';
-import 'package:ma_for_feip/products/mapper/product_mapper.dart';
-import 'package:ma_for_feip/products/mock_data/mock_product.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
 import 'package:ma_for_feip/public_views/body_divider.dart';
 import 'package:ma_for_feip/service_locator/app_locator.dart';
@@ -30,25 +28,12 @@ class CatalogPage extends BasePageInterface {
         horizontal: ThemeInfo.horizontalPadding,
       ),
       child: ListView(
-        children: [
-          FutureBuilder(
-            future: cat,
-            builder: (BuildContext context, AsyncSnapshot<List<MainCategory>> snapshot) {
-              if (snapshot.hasData) {
-                return CategoriesGrid(categories: snapshot.data!);
-              }
-              return const CircularProgressIndicator();
-            },
+        children: const [
+          CategoriesGrid(categories: []),
+          BodyDivider(),
+          CategoryListWithItems(
+            categories: {},
           ),
-          const BodyDivider(),
-          FutureBuilder(builder: (context, AsyncSnapshot<Map<MainCategory, List<ProductModel>>> snapshot) {
-            if (snapshot.hasData) {
-              return CategoryListWithItems(
-                categories: snapshot.data!,
-              );
-            }
-            return const CircularProgressIndicator();
-          }),
         ],
       ),
     );
@@ -71,7 +56,7 @@ class CategoryListWithItems extends StatelessWidget {
               vertical: ThemeInfo.inListSeparator,
             ),
             child: CategoryFlexCatalog(
-              category: Category('', '', 1, 0),
+              category: element.key,
               products: element.value,
             ),
           );
@@ -82,7 +67,7 @@ class CategoryListWithItems extends StatelessWidget {
 }
 
 class CategoryFlexCatalog extends StatelessWidget {
-  final Category category;
+  final MainCategory category;
   final List<ProductModel> products;
 
   const CategoryFlexCatalog({
@@ -131,19 +116,3 @@ class CategoryFlexCatalog extends StatelessWidget {
     );
   }
 }
-
-final cat = AppLocator.instance.categoryRepository.getMainCategories();
-Future<Map<MainCategory, dynamic>> products = cat.then((value) async {
-  final Map<MainCategory, dynamic> pr = {};
-  print(value);
-  value.map((e) async => pr[e] = await AppLocator.instance.productsRepository.getMainCatProducts(e.id));
-  print(pr.values);
-  return pr;
-});
-//
-// final cp = {
-//   cat[0]: MockProduct()
-//       .genProducts(10, 10)
-//       .map((e) => ProductMapper.fromSource(e))
-//       .toList(),
-// };

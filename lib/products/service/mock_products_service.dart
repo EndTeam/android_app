@@ -21,4 +21,10 @@ class MockProductsService extends AbstractProductsService {
     _products ??= _mock.genProducts(10);
     return Future(() => _products!);
   }
+
+  @override
+  Future<List<ProductModelDTO>> getMainCatProducts(int categoryID) {
+    _products ??= _mock.genProducts(10);
+    return Future(() => _products!);
+  }
 }

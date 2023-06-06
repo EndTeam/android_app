@@ -16,12 +16,18 @@ class ProductsService extends AbstractProductsService {
   @override
   Future<List<ProductModelDTO>> getProducts(int categoryID) async {
     final response = await dio.get('/product/?category=$categoryID') as Map;
-    return (response['results'] as List).map((e) => ProductModelDTO.fromJson(e)).toList();
+    return (response['results'] as List)
+        .map((e) => ProductModelDTO.fromJson(e))
+        .toList();
   }
 
   @override
   Future<List<ProductModelDTO>> getMainCatProducts(int categoryID) async {
-    final response = (await dio.get('/product/?category=$categoryID')).data as Map; // todo main cat
-    return (response['results'] as List).map((e) => ProductModelDTO.fromJson(e)).toList();
+    final response =
+        (await dio.get('/product/?category__main_category=$categoryID')).data
+            as Map;
+    return (response['results'] as List)
+        .map((e) => ProductModelDTO.fromJson(e))
+        .toList();
   }
 }
