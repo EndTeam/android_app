@@ -22,9 +22,9 @@ void main() {
     test('Fields test', () {
       final size = mock.genSizes(7, 7);
       for (var s in size) {
-        expect(s.label.length, isPositive);
+        expect(s.size.length, isPositive);
         expect(['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'].join(' '),
-            contains(s.label));
+            contains(s.size));
       }
     });
   });

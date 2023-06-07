@@ -8,12 +8,14 @@ part of 'named_color.dart';
 
 _$_NamedColorDTO _$$_NamedColorDTOFromJson(Map<String, dynamic> json) =>
     _$_NamedColorDTO(
+      id: json['id'] as int,
       color: json['color'] as int,
-      label: json['label'] as String,
+      name: json['name'] as String,
     );
 
 Map<String, dynamic> _$$_NamedColorDTOToJson(_$_NamedColorDTO instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'color': instance.color,
-      'label': instance.label,
+      'name': instance.name,
     };

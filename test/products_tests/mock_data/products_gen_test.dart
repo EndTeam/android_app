@@ -25,14 +25,10 @@ void main() {
 
       expect(product.id, isNonNegative);
       expect(product.name.length, isPositive);
-      expect(product.images.length, isPositive);
-      expect(product.tags.length, isPositive);
-      expect(product.oldCost, greaterThan(product.cost));
-      expect(product.colors.length, isPositive);
-      expect(product.sizes.length, isPositive);
-      for (var desc in product.description) {
-        expect(desc.length, isPositive);
-      }
+      expect(product.imageColor.length, isPositive);
+      expect(product.cost, greaterThan(product.saleCost!));
+      expect(product.size.length, isPositive);
+      expect(product.description.length, isPositive);
     });
   });
 }

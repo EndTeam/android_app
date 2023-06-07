@@ -20,7 +20,7 @@ void main() {
 
     test('Fields test', () {
       final color = mock.genColors(1).first;
-      expect(color.label.isNotEmpty, true);
+      expect(color.name.isNotEmpty, true);
       expect(color.color, inInclusiveRange(0xFF000000, 0xFFFFFFFF));
     });
   });

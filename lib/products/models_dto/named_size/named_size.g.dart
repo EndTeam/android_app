@@ -8,10 +8,12 @@ part of 'named_size.dart';
 
 _$_NamedSizeDTO _$$_NamedSizeDTOFromJson(Map<String, dynamic> json) =>
     _$_NamedSizeDTO(
-      label: json['label'] as String,
+      id: json['id'] as int,
+      size: json['size'] as String,
     );
 
 Map<String, dynamic> _$$_NamedSizeDTOToJson(_$_NamedSizeDTO instance) =>
     <String, dynamic>{
-      'label': instance.label,
+      'id': instance.id,
+      'size': instance.size,
     };

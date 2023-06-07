@@ -40,8 +40,9 @@ class ProductPageNotifier extends StateNotifier<ProductPageState> {
         ),
       );
     } catch (e, s) {
-      _updateState(const ProductPageState.error(
-          msg: 'Что-то пошло не так')); // TODO: add errors
+      _updateState(
+        const ProductPageState.error(msg: 'Что-то пошло не так'),
+      ); // TODO: add errors
       debugPrint(e.toString());
       debugPrintStack(stackTrace: s);
     }

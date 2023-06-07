@@ -33,10 +33,15 @@ class BigProductImage extends StatelessWidget {
                 onPressed: () {
                   /* Subscribe */
                 },
-                icon: const Icon(
-                  Icons.favorite,
-                  size: 32,
-                ),
+                icon: product.isFavorite
+                    ? const Icon(
+                        Icons.favorite,
+                        size: 32,
+                      )
+                    : const Icon(
+                        Icons.favorite_border,
+                        size: 32,
+                      ),
               ),
             ),
           ),

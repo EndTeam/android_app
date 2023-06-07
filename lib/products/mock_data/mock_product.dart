@@ -1,5 +1,8 @@
 import 'package:faker/faker.dart';
-import 'package:ma_for_feip/products/models_dto/product_model/product_model.dart';
+import 'package:ma_for_feip/products/models_dto/brand/brand_dto.dart';
+import 'package:ma_for_feip/products/models_dto/category/category_dto.dart';
+import 'package:ma_for_feip/products/models_dto/image_color/image_color_dto.dart';
+import 'package:ma_for_feip/products/models_dto/product/product.dart';
 import 'package:ma_for_feip/products/mock_data/mock_named_color.dart';
 import 'package:ma_for_feip/products/mock_data/mock_named_size.dart';
 
@@ -17,14 +20,6 @@ class MockProduct {
 
   ProductModelDTO _genNextProduct(int id) {
     final name = faker.company.name();
-    final images = [
-      'https://shop-cdn1-2.vigbo.tech/shops/49937/products/19627396/images/2-53ebac4df3bdde822da29161dc662a61.JPG'
-    ];
-    final tags = faker.randomGenerator.amount<String>(
-      (i) => faker.randomGenerator.string(20),
-      10,
-      min: 1,
-    );
     final isNew = faker.randomGenerator.boolean();
     final cost = faker.randomGenerator.integer(10000000, min: 1000);
     final oldCost = faker.randomGenerator.integer(100000000, min: cost + 1);
@@ -35,14 +30,28 @@ class MockProduct {
     return ProductModelDTO(
       id: id,
       name: name,
-      images: images,
-      tags: tags,
+      article: faker.randomGenerator.string(10),
       isNew: isNew,
-      cost: cost,
-      oldCost: oldCost,
-      colors: colors,
-      sizes: sizes,
-      description: description,
+      cost: oldCost / 100.0,
+      saleCost: cost / 100.0,
+      sale: true,
+      imageColor: colors
+          .map(
+            (e) => ImageColorDTO(
+              id: e.id,
+              color: e,
+              image:
+                  'https://shop-cdn1-2.vigbo.tech/shops/49937/products/19627396/images/2-53ebac4df3bdde822da29161dc662a61.JPG',
+              name: 'image',
+            ),
+          )
+          .toList(),
+      size: sizes,
+      description: description.join('\n'),
+      brand: const BrandDTO(id: 0, name: 'brand'),
+      category: CategoryDTO(
+          id: 0, category: faker.randomGenerator.string(10), mainCategoryId: 0),
+      isFavorite: faker.randomGenerator.boolean(),
     );
   }
 }
