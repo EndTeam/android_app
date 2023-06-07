@@ -9,8 +9,8 @@ class ProductsService extends AbstractProductsService {
 
   @override
   Future<ProductModelDTO> getProductByID(int id) async {
-    dio.get('/product/$id');
-    throw UnimplementedError();
+    final result = (await dio.get('/product/$id')).data;
+    return ProductModelDTO.fromJson(result);
   }
 
   @override

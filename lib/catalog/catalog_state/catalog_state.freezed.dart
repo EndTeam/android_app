@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CatalogState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Category> categories, List<ProductModel> products)
+    TResult Function(IMap<MainCategory, List<ProductModel>> products)
         $default, {
     required TResult Function(String? msg) error,
     required TResult Function() loading,
@@ -26,7 +26,7 @@ mixin _$CatalogState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Category> categories, List<ProductModel> products)?
+    TResult? Function(IMap<MainCategory, List<ProductModel>> products)?
         $default, {
     TResult? Function(String? msg)? error,
     TResult? Function()? loading,
@@ -34,7 +34,7 @@ mixin _$CatalogState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Category> categories, List<ProductModel> products)?
+    TResult Function(IMap<MainCategory, List<ProductModel>> products)?
         $default, {
     TResult Function(String? msg)? error,
     TResult Function()? loading,
@@ -147,7 +147,7 @@ class _$CatalogError implements CatalogError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Category> categories, List<ProductModel> products)
+    TResult Function(IMap<MainCategory, List<ProductModel>> products)
         $default, {
     required TResult Function(String? msg) error,
     required TResult Function() loading,
@@ -158,7 +158,7 @@ class _$CatalogError implements CatalogError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Category> categories, List<ProductModel> products)?
+    TResult? Function(IMap<MainCategory, List<ProductModel>> products)?
         $default, {
     TResult? Function(String? msg)? error,
     TResult? Function()? loading,
@@ -169,7 +169,7 @@ class _$CatalogError implements CatalogError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Category> categories, List<ProductModel> products)?
+    TResult Function(IMap<MainCategory, List<ProductModel>> products)?
         $default, {
     TResult Function(String? msg)? error,
     TResult Function()? loading,
@@ -263,7 +263,7 @@ class _$CatalogLoading implements CatalogLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Category> categories, List<ProductModel> products)
+    TResult Function(IMap<MainCategory, List<ProductModel>> products)
         $default, {
     required TResult Function(String? msg) error,
     required TResult Function() loading,
@@ -274,7 +274,7 @@ class _$CatalogLoading implements CatalogLoading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Category> categories, List<ProductModel> products)?
+    TResult? Function(IMap<MainCategory, List<ProductModel>> products)?
         $default, {
     TResult? Function(String? msg)? error,
     TResult? Function()? loading,
@@ -285,7 +285,7 @@ class _$CatalogLoading implements CatalogLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Category> categories, List<ProductModel> products)?
+    TResult Function(IMap<MainCategory, List<ProductModel>> products)?
         $default, {
     TResult Function(String? msg)? error,
     TResult Function()? loading,
@@ -342,7 +342,7 @@ abstract class _$$_CatalogStateCopyWith<$Res> {
           _$_CatalogState value, $Res Function(_$_CatalogState) then) =
       __$$_CatalogStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<Category> categories, List<ProductModel> products});
+  $Res call({IMap<MainCategory, List<ProductModel>> products});
 }
 
 /// @nodoc
@@ -356,18 +356,13 @@ class __$$_CatalogStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? categories = null,
     Object? products = null,
   }) {
     return _then(_$_CatalogState(
-      categories: null == categories
-          ? _value._categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<Category>,
       products: null == products
-          ? _value._products
+          ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
+              as IMap<MainCategory, List<ProductModel>>,
     ));
   }
 }
@@ -375,31 +370,14 @@ class __$$_CatalogStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_CatalogState implements _CatalogState {
-  const _$_CatalogState(
-      {required final List<Category> categories,
-      required final List<ProductModel> products})
-      : _categories = categories,
-        _products = products;
+  const _$_CatalogState({required this.products});
 
-  final List<Category> _categories;
   @override
-  List<Category> get categories {
-    if (_categories is EqualUnmodifiableListView) return _categories;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categories);
-  }
-
-  final List<ProductModel> _products;
-  @override
-  List<ProductModel> get products {
-    if (_products is EqualUnmodifiableListView) return _products;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_products);
-  }
+  final IMap<MainCategory, List<ProductModel>> products;
 
   @override
   String toString() {
-    return 'CatalogState(categories: $categories, products: $products)';
+    return 'CatalogState(products: $products)';
   }
 
   @override
@@ -407,16 +385,12 @@ class _$_CatalogState implements _CatalogState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CatalogState &&
-            const DeepCollectionEquality()
-                .equals(other._categories, _categories) &&
-            const DeepCollectionEquality().equals(other._products, _products));
+            (identical(other.products, products) ||
+                other.products == products));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_categories),
-      const DeepCollectionEquality().hash(_products));
+  int get hashCode => Object.hash(runtimeType, products);
 
   @JsonKey(ignore: true)
   @override
@@ -427,36 +401,36 @@ class _$_CatalogState implements _CatalogState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(List<Category> categories, List<ProductModel> products)
+    TResult Function(IMap<MainCategory, List<ProductModel>> products)
         $default, {
     required TResult Function(String? msg) error,
     required TResult Function() loading,
   }) {
-    return $default(categories, products);
+    return $default(products);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(List<Category> categories, List<ProductModel> products)?
+    TResult? Function(IMap<MainCategory, List<ProductModel>> products)?
         $default, {
     TResult? Function(String? msg)? error,
     TResult? Function()? loading,
   }) {
-    return $default?.call(categories, products);
+    return $default?.call(products);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(List<Category> categories, List<ProductModel> products)?
+    TResult Function(IMap<MainCategory, List<ProductModel>> products)?
         $default, {
     TResult Function(String? msg)? error,
     TResult Function()? loading,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(categories, products);
+      return $default(products);
     }
     return orElse();
   }
@@ -498,11 +472,10 @@ class _$_CatalogState implements _CatalogState {
 
 abstract class _CatalogState implements CatalogState {
   const factory _CatalogState(
-      {required final List<Category> categories,
-      required final List<ProductModel> products}) = _$_CatalogState;
+          {required final IMap<MainCategory, List<ProductModel>> products}) =
+      _$_CatalogState;
 
-  List<Category> get categories;
-  List<ProductModel> get products;
+  IMap<MainCategory, List<ProductModel>> get products;
   @JsonKey(ignore: true)
   _$$_CatalogStateCopyWith<_$_CatalogState> get copyWith =>
       throw _privateConstructorUsedError;

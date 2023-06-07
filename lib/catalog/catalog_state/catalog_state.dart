@@ -1,5 +1,6 @@
+import 'package:fast_immutable_collections/fast_immutable_collections.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ma_for_feip/catalog/models/category.dart';
+import 'package:ma_for_feip/catalog/models/main_category.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
 
 part 'catalog_state.freezed.dart';
@@ -11,7 +12,6 @@ class CatalogState with _$CatalogState {
   const factory CatalogState.loading() = CatalogLoading;
 
   const factory CatalogState({
-    required List<Category> categories,
-    required List<ProductModel> products,
+    required IMap<MainCategory, List<ProductModel>> products,
   }) = _CatalogState;
 }

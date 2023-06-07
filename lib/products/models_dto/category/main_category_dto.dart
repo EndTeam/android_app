@@ -15,5 +15,6 @@ class MainCategoryDTO with _$MainCategoryDTO {
     required final List<CategoryDTO> category,
   }) = _MainCategoryDTO;
 
-  factory MainCategoryDTO.fromJson(Map<String, dynamic> json) => _$MainCategoryDTOFromJson(json);
+  factory MainCategoryDTO.fromJson(Map<String, dynamic> json) =>
+      _$MainCategoryDTOFromJson(json);
 }

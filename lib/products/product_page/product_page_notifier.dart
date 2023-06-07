@@ -10,7 +10,8 @@ class ProductPageNotifier extends StateNotifier<ProductPageState> {
   final int _id;
   final AbstractProductRepository _repo;
 
-  ProductPageNotifier(this._id, this._repo) : super(const ProductPageState.loading()) {
+  ProductPageNotifier(this._id, this._repo)
+      : super(const ProductPageState.loading()) {
     _loadProduct();
   }
 

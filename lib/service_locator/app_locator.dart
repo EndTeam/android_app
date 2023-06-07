@@ -1,4 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:ma_for_feip/catalog/catalog_notifier.dart';
+import 'package:ma_for_feip/catalog/catalog_state/catalog_state.dart';
+import 'package:ma_for_feip/catalog/models/main_category.dart';
 import 'package:ma_for_feip/catalog/repository/abstract_repository.dart';
 import 'package:ma_for_feip/catalog/repository/category_repository.dart';
 import 'package:ma_for_feip/catalog/service/abstract_category_service.dart';
@@ -29,24 +32,33 @@ class AppLocator extends ServiceLocator {
   late final AbstractMainCategoryRepository _categoryRepository;
   late final AbstractCategoryService _categoryService;
 
-  AbstractMainCategoryRepository get categoryRepository => _categoryRepository;
-
-  AbstractProductRepository get productsRepository => _productsRepository;
+  @override
+  late final AutoDisposeStateNotifierProviderFamily<ProductPageNotifier,
+      ProductPageState, int> productPageProviderBuilder;
 
   @override
-  late final AutoDisposeStateNotifierProviderFamily<ProductPageNotifier, ProductPageState, int>
-      productPageProviderBuilder;
+  late final StateNotifierProvider<CatalogNotifier, CatalogState>
+      catalogPageProvider;
 
   @override
-  late final StateNotifierProvider<ConnectivityProvider, Object?> connectivityProvider;
+  late final StateNotifierProvider<ConnectivityProvider, Object?>
+      connectivityProvider;
+
+  @override
+  late final FutureProvider<List<MainCategory>> categoryProvider;
 
   Future<void> init() async {
     await null;
     _initDio();
-    _initProductRepo();
-    _initProductPage();
+
     _initCategoryService();
     _initCategoryRepo();
+    _initCategoryProvider();
+
+    _initCatalogProvider();
+
+    _initProductRepo();
+    _initProductPage();
 
     _initConnectivity();
   }
@@ -59,9 +71,24 @@ class AppLocator extends ServiceLocator {
     _categoryRepository = MainCategoryRepository(_categoryService);
   }
 
+  void _initCategoryProvider() {
+    categoryProvider = FutureProvider((ref) async {
+      return _categoryRepository.getMainCategories();
+    });
+  }
+
+  void _initCatalogProvider() {
+    catalogPageProvider =
+        StateNotifierProvider<CatalogNotifier, CatalogState>((ref) {
+      final mainCategories = ref.watch(categoryProvider);
+      return CatalogNotifier(_productsRepository, mainCategories);
+    });
+  }
+
   void _initProductPage() {
     productPageProviderBuilder = StateNotifierProvider.autoDispose
-        .family<ProductPageNotifier, ProductPageState, int>((ref, id) => ProductPageNotifier(id, _productsRepository));
+        .family<ProductPageNotifier, ProductPageState, int>(
+            (ref, id) => ProductPageNotifier(id, _productsRepository));
   }
 
   void _initProductRepo() {
@@ -70,7 +97,8 @@ class AppLocator extends ServiceLocator {
   }
 
   void _initConnectivity() {
-    connectivityProvider = StateNotifierProvider((ref) => ConnectivityProvider());
+    connectivityProvider =
+        StateNotifierProvider((ref) => ConnectivityProvider());
   }
 
   void _initDio() {
