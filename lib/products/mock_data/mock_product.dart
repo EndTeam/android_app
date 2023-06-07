@@ -2,7 +2,7 @@ import 'package:faker/faker.dart';
 import 'package:ma_for_feip/products/models_dto/brand/brand_dto.dart';
 import 'package:ma_for_feip/products/models_dto/category/category_dto.dart';
 import 'package:ma_for_feip/products/models_dto/image_color/image_color_dto.dart';
-import 'package:ma_for_feip/products/models_dto/product_model/product_model.dart';
+import 'package:ma_for_feip/products/models_dto/product/product.dart';
 import 'package:ma_for_feip/products/mock_data/mock_named_color.dart';
 import 'package:ma_for_feip/products/mock_data/mock_named_size.dart';
 

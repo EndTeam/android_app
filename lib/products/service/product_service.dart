@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:ma_for_feip/products/models_dto/product_model/product_model.dart';
+import 'package:ma_for_feip/products/models_dto/product/product.dart';
 import 'package:ma_for_feip/products/service/abstract_products_service.dart';
 
 class ProductsService extends AbstractProductsService {

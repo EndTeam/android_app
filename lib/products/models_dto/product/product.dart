@@ -6,9 +6,9 @@ import 'package:ma_for_feip/products/models_dto/category/category_dto.dart';
 import 'package:ma_for_feip/products/models_dto/image_color/image_color_dto.dart';
 import 'package:ma_for_feip/products/models_dto/named_size/named_size.dart';
 
-part 'product_model.freezed.dart';
+part 'product.freezed.dart';
 
-part 'product_model.g.dart';
+part 'product.g.dart';
 
 @freezed
 class ProductModelDTO with _$ProductModelDTO {

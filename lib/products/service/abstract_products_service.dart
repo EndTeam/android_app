@@ -1,4 +1,4 @@
-import 'package:ma_for_feip/products/models_dto/product_model/product_model.dart';
+import 'package:ma_for_feip/products/models_dto/product/product.dart';
 
 abstract class AbstractProductsService {
   Future<List<ProductModelDTO>> getProducts(int categoryID);
