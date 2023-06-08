@@ -3,22 +3,28 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class PagedDynamicDots extends StatefulWidget {
+  final Color mainColor;
   final PageController pageController;
   final int length;
 
-  const PagedDynamicDots(
-      {super.key, required this.pageController, required this.length});
+  const PagedDynamicDots({
+    super.key,
+    required this.pageController,
+    required this.length,
+    this.mainColor = Colors.black,
+  });
 
   @override
   State<PagedDynamicDots> createState() => _PagedDynamicDotsState();
 }
 
 class _PagedDynamicDotsState extends State<PagedDynamicDots> {
-  final _colorsTween = ColorTween(begin: Colors.transparent, end: Colors.black);
+  late final ColorTween _colorsTween;
 
   @override
   void initState() {
     super.initState();
+    _colorsTween = ColorTween(begin: Colors.transparent, end: widget.mainColor);
     widget.pageController.addListener(_update);
   }
 
