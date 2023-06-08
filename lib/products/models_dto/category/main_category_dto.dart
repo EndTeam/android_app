@@ -13,6 +13,7 @@ class MainCategoryDTO with _$MainCategoryDTO {
     required final int id,
     @JsonKey(name: 'main_category') required final String name,
     required final List<CategoryDTO> category,
+    required final String image,
   }) = _MainCategoryDTO;
 
   factory MainCategoryDTO.fromJson(Map<String, dynamic> json) =>

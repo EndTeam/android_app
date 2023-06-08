@@ -15,6 +15,7 @@ class MainCategoryRepository extends AbstractMainCategoryRepository {
             name: e.name,
             categories:
                 e.category.map((e) => CategoryMapper.fromSource(e)).toList(),
+            image: e.image,
           ),
         )
         .toList();

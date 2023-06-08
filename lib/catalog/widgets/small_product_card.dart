@@ -34,11 +34,13 @@ class SmallProductCard extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SmallProductImage(
-              image: product.images.first,
-              isNew: product.isNew,
-              isSale: product.oldCost != null,
-              scaleFromBase: scaleFromBase,
+            Expanded(
+              child: SmallProductImage(
+                image: product.images.first,
+                isNew: product.isNew,
+                isSale: product.oldCost != null,
+                scaleFromBase: scaleFromBase,
+              ),
             ),
             SizedBox(height: ThemeInfo.inListSeparator * scaleFromBase),
             AutoSizeText(
