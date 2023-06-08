@@ -13,6 +13,7 @@ _$_MainCategoryDTO _$$_MainCategoryDTOFromJson(Map<String, dynamic> json) =>
       category: (json['category'] as List<dynamic>)
           .map((e) => CategoryDTO.fromJson(e as Map<String, dynamic>))
           .toList(),
+      image: json['image'] as String,
     );
 
 Map<String, dynamic> _$$_MainCategoryDTOToJson(_$_MainCategoryDTO instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$_MainCategoryDTOToJson(_$_MainCategoryDTO instance) =>
       'id': instance.id,
       'main_category': instance.name,
       'category': instance.category,
+      'image': instance.image,
     };

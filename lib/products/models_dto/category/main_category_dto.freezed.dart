@@ -24,6 +24,7 @@ mixin _$MainCategoryDTO {
   @JsonKey(name: 'main_category')
   String get name => throw _privateConstructorUsedError;
   List<CategoryDTO> get category => throw _privateConstructorUsedError;
+  String get image => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +41,8 @@ abstract class $MainCategoryDTOCopyWith<$Res> {
   $Res call(
       {int id,
       @JsonKey(name: 'main_category') String name,
-      List<CategoryDTO> category});
+      List<CategoryDTO> category,
+      String image});
 }
 
 /// @nodoc
@@ -59,6 +61,7 @@ class _$MainCategoryDTOCopyWithImpl<$Res, $Val extends MainCategoryDTO>
     Object? id = null,
     Object? name = null,
     Object? category = null,
+    Object? image = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -73,6 +76,10 @@ class _$MainCategoryDTOCopyWithImpl<$Res, $Val extends MainCategoryDTO>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as List<CategoryDTO>,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -88,7 +95,8 @@ abstract class _$$_MainCategoryDTOCopyWith<$Res>
   $Res call(
       {int id,
       @JsonKey(name: 'main_category') String name,
-      List<CategoryDTO> category});
+      List<CategoryDTO> category,
+      String image});
 }
 
 /// @nodoc
@@ -105,6 +113,7 @@ class __$$_MainCategoryDTOCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? category = null,
+    Object? image = null,
   }) {
     return _then(_$_MainCategoryDTO(
       id: null == id
@@ -119,6 +128,10 @@ class __$$_MainCategoryDTOCopyWithImpl<$Res>
           ? _value._category
           : category // ignore: cast_nullable_to_non_nullable
               as List<CategoryDTO>,
+      image: null == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -129,7 +142,8 @@ class _$_MainCategoryDTO implements _MainCategoryDTO {
   const _$_MainCategoryDTO(
       {required this.id,
       @JsonKey(name: 'main_category') required this.name,
-      required final List<CategoryDTO> category})
+      required final List<CategoryDTO> category,
+      required this.image})
       : _category = category;
 
   factory _$_MainCategoryDTO.fromJson(Map<String, dynamic> json) =>
@@ -149,8 +163,11 @@ class _$_MainCategoryDTO implements _MainCategoryDTO {
   }
 
   @override
+  final String image;
+
+  @override
   String toString() {
-    return 'MainCategoryDTO(id: $id, name: $name, category: $category)';
+    return 'MainCategoryDTO(id: $id, name: $name, category: $category, image: $image)';
   }
 
   @override
@@ -160,13 +177,14 @@ class _$_MainCategoryDTO implements _MainCategoryDTO {
             other is _$_MainCategoryDTO &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            const DeepCollectionEquality().equals(other._category, _category));
+            const DeepCollectionEquality().equals(other._category, _category) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, const DeepCollectionEquality().hash(_category));
+  int get hashCode => Object.hash(runtimeType, id, name,
+      const DeepCollectionEquality().hash(_category), image);
 
   @JsonKey(ignore: true)
   @override
@@ -186,7 +204,8 @@ abstract class _MainCategoryDTO implements MainCategoryDTO {
   const factory _MainCategoryDTO(
       {required final int id,
       @JsonKey(name: 'main_category') required final String name,
-      required final List<CategoryDTO> category}) = _$_MainCategoryDTO;
+      required final List<CategoryDTO> category,
+      required final String image}) = _$_MainCategoryDTO;
 
   factory _MainCategoryDTO.fromJson(Map<String, dynamic> json) =
       _$_MainCategoryDTO.fromJson;
@@ -198,6 +217,8 @@ abstract class _MainCategoryDTO implements MainCategoryDTO {
   String get name;
   @override
   List<CategoryDTO> get category;
+  @override
+  String get image;
   @override
   @JsonKey(ignore: true)
   _$$_MainCategoryDTOCopyWith<_$_MainCategoryDTO> get copyWith =>
