@@ -34,8 +34,15 @@ class _CategoryFlexCatalogState extends State<CategoryFlexCatalog> {
     super.dispose();
   }
 
+  bool _isBuilded = false;
+
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((timeStamp) {
+      setState(() {
+        _isBuilded = true;
+      });
+    });
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -52,10 +59,12 @@ class _CategoryFlexCatalogState extends State<CategoryFlexCatalog> {
               SizedBox(
                 width: 70,
                 height: 30,
-                child: PagedDynamicDots(
-                  pageController: _controller,
-                  length: widget.products.length,
-                ),
+                child: _isBuilded
+                    ? PagedDynamicDots(
+                        pageController: _controller,
+                        length: widget.products.length,
+                      )
+                    : Container(),
               ),
             ],
           ),
