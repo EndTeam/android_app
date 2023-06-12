@@ -40,7 +40,6 @@ class _PagedDynamicDotsState extends State<PagedDynamicDots> {
 
   @override
   Widget build(BuildContext context) {
-    WidgetsFlutterBinding.ensureInitialized();
     return LayoutBuilder(
       builder: (context, constraints) {
         final diam = min(constraints.maxWidth / 10, constraints.maxHeight);

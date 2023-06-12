@@ -11,4 +11,8 @@ abstract class AbstractProductRepository {
   Future<List<ProductModel>> getMainCatProducts(int categoryID);
 
   Future<ProductModel> getProductByID(int id);
+
+  Future<List<ProductModel>> getNewProducts();
+
+  Future<List<ProductModel>> getSaleProducts();
 }

@@ -22,4 +22,16 @@ class ProductsRepository extends AbstractProductRepository {
     final products = await serivce.getMainCatProducts(categoryID);
     return products.map((p) => ProductMapper.fromSource(p)).toList();
   }
+
+  @override
+  Future<List<ProductModel>> getNewProducts() async {
+    final products = await serivce.getNewProducts();
+    return products.map((p) => ProductMapper.fromSource(p)).toList();
+  }
+
+  @override
+  Future<List<ProductModel>> getSaleProducts() async {
+    final products = await serivce.getSaleProducts();
+    return products.map((p) => ProductMapper.fromSource(p)).toList();
+  }
 }

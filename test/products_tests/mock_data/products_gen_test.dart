@@ -26,7 +26,7 @@ void main() {
       expect(product.id, isNonNegative);
       expect(product.name.length, isPositive);
       expect(product.imageColor.length, isPositive);
-      expect(product.cost, greaterThan(product.saleCost!));
+      expect(product.cost, greaterThan(product.saleCost ?? -1));
       expect(product.size.length, isPositive);
       expect(product.description.length, isPositive);
     });

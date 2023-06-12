@@ -29,43 +29,54 @@ class SmallProductImage extends StatelessWidget {
               child: Image.network(
                 image,
                 fit: BoxFit.fill,
+                width: double.infinity,
+                height: double.infinity,
               ),
             ),
             if (scaleFromBase > 0.99)
               Align(
                 alignment: Alignment.topCenter,
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    if (isSale)
-                      Container(
-                        color: const Color(0xFFCDCFD6),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 4, horizontal: 12),
-                        child: Text(
-                          'ЛУЧШАЯ ЦЕНА',
-                          style: ThemeInfo.labelSmall.copyWith(
-                            color: ThemeInfo.tertiaryTextColor,
-                            fontSize:
-                                ThemeInfo.labelSmall.fontSize! * scaleFromBase,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        if (isSale)
+                          Container(
+                            color: const Color(0xFFCDCFD6),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 4,
+                              horizontal: 12,
+                            ),
+                            child: Text(
+                              'ЛУЧШАЯ ЦЕНА',
+                              style: ThemeInfo.labelSmall.copyWith(
+                                color: ThemeInfo.tertiaryTextColor,
+                                fontSize: ThemeInfo.labelSmall.fontSize! *
+                                    scaleFromBase,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                    if (!isSale && isNew)
-                      Container(
-                        color: const Color(0xFFCDCFD6),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 4,
-                          horizontal: 12,
-                        ),
-                        child: Text(
-                          'NEW',
-                          style: ThemeInfo.labelSmall.copyWith(
-                            color: ThemeInfo.tertiaryTextColor,
-                            fontSize:
-                                ThemeInfo.labelSmall.fontSize! * scaleFromBase,
+                        const SizedBox(height: 4),
+                        if (isNew)
+                          Container(
+                            color: const Color(0xFFCDCFD6),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 4,
+                              horizontal: 12,
+                            ),
+                            child: Text(
+                              'NEW',
+                              style: ThemeInfo.labelSmall.copyWith(
+                                color: ThemeInfo.tertiaryTextColor,
+                                fontSize: ThemeInfo.labelSmall.fontSize! *
+                                    scaleFromBase,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
+                      ],
+                    ),
                     const Spacer(),
                     IconButton(
                       onPressed: () {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ma_for_feip/catalog/widgets/category_flex_catalog.dart';
+import 'package:ma_for_feip/catalog/widgets/news_flex_catalog.dart';
 import 'package:ma_for_feip/service_locator/app_locator.dart';
 import 'package:ma_for_feip/theme_info.dart';
 import 'package:skeletons/skeletons.dart';
@@ -15,19 +16,29 @@ class CategoryListWithItems extends ConsumerWidget {
       (products) {
         return Column(
           mainAxisSize: MainAxisSize.min,
-          children: products.entries.map(
-            (element) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: ThemeInfo.inListSeparator,
-                ),
-                child: CategoryFlexCatalog(
-                  category: element.key,
-                  products: element.value,
-                ),
-              );
-            },
-          ).toList(),
+          children: [
+            ...products.entries.map(
+              (element) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: ThemeInfo.inListSeparator,
+                  ),
+                  child: CategoryFlexCatalog(
+                    category: element.key,
+                    products: element.value,
+                  ),
+                );
+              },
+            ).toList(),
+            OthersFlexCatalog(
+              provider: AppLocator.instance.newsProvider,
+              title: 'Новое поступление',
+            ),
+            OthersFlexCatalog(
+              provider: AppLocator.instance.salesProvider,
+              title: 'Скидки',
+            ),
+          ],
         );
       },
       loading: () {

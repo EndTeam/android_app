@@ -30,4 +30,22 @@ class ProductsService extends AbstractProductsService {
         .map((e) => ProductModelDTO.fromJson(e))
         .toList();
   }
+
+  @override
+  Future<List<ProductModelDTO>> getNewProducts() async {
+    final response =
+        (await dio.get('/product/?sale=false&new=true')).data as Map;
+    return (response['results'] as List)
+        .map((e) => ProductModelDTO.fromJson(e))
+        .toList();
+  }
+
+  @override
+  Future<List<ProductModelDTO>> getSaleProducts() async {
+    final response =
+        (await dio.get('/product/?sale=true&new=false')).data as Map;
+    return (response['results'] as List)
+        .map((e) => ProductModelDTO.fromJson(e))
+        .toList();
+  }
 }
