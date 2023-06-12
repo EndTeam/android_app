@@ -118,6 +118,6 @@ class AppLocator extends ServiceLocator {
   }
 
   void _initDio() {
-    _dio = Dio(BaseOptions(baseUrl: 'http://localhost:8000/api/v1'));
+    _dio = Dio(BaseOptions(baseUrl: 'http://192.168.0.102:8000/api/v1'));
   }
 }
