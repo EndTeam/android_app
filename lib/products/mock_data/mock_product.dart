@@ -36,7 +36,7 @@ class MockProduct {
       article: faker.randomGenerator.string(10),
       isNew: isNew,
       cost: oldCost != null ? oldCost / 100.0 : cost / 100.0,
-      saleCost: oldCost == null ? null : oldCost / 100.0,
+      saleCost: oldCost == null ? null : cost / 100.0,
       sale: true,
       imageColor: colors
           .map(
@@ -53,7 +53,10 @@ class MockProduct {
       description: description.join('\n'),
       brand: const BrandDTO(id: 0, name: 'brand'),
       category: CategoryDTO(
-          id: 0, category: faker.randomGenerator.string(10), mainCategoryId: 0),
+        id: 0,
+        category: faker.randomGenerator.string(10),
+        mainCategoryId: 0,
+      ),
       isFavorite: faker.randomGenerator.boolean(),
     );
   }
