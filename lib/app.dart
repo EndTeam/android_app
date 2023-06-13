@@ -23,6 +23,7 @@ class _AppState extends State<App> {
           onPrimary: Colors.black,
         ),
         bottomNavigationBarTheme: ThemeInfo.bottomNavigationBarThemeData,
+        elevatedButtonTheme: ThemeInfo.elevatedButtonThemeData,
         fontFamily: 'Montserrat',
         useMaterial3: true,
       ),

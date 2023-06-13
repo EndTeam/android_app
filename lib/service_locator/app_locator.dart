@@ -16,6 +16,8 @@ import 'package:ma_for_feip/products/service/abstract_products_service.dart';
 import 'package:ma_for_feip/products/service/product_service.dart';
 import 'package:ma_for_feip/service_locator/service_locator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ma_for_feip/sign_up/state/state.dart';
+import 'package:ma_for_feip/sign_up/state/state_notifier.dart';
 
 class AppLocator extends ServiceLocator {
   static AppLocator? _instance;
@@ -48,12 +50,17 @@ class AppLocator extends ServiceLocator {
   @override
   late final FutureProvider<List<MainCategory>> categoryProvider;
 
+  @override
+  late final StateNotifierProvider<SignUpNotifier, SignUpState> signUpProvider;
+
   late final FutureProvider<List<ProductModel>> salesProvider;
   late final FutureProvider<List<ProductModel>> newsProvider;
 
   Future<void> init() async {
     await null;
     _initDio();
+
+    _initSignUp();
 
     _initCategoryService();
     _initCategoryRepo();
@@ -117,7 +124,12 @@ class AppLocator extends ServiceLocator {
     });
   }
 
+  void _initSignUp() {
+    signUpProvider =
+        StateNotifierProvider((ref) => SignUpNotifier(SignUpSource(_dio)));
+  }
+
   void _initDio() {
-    _dio = Dio(BaseOptions(baseUrl: 'http://localhost:8000/api/v1'));
+    _dio = Dio(BaseOptions(baseUrl: 'http://192.168.0.102:8000/api/v1'));
   }
 }
