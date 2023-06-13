@@ -16,6 +16,8 @@ class ThemeInfo {
   static const Color primaryColor = Colors.white;
   static const Color secondaryColor = Colors.white70;
   static const Color tertiaryColor = Colors.white10;
+  static const Color contrastColor = Colors.black;
+  static const Color contrastSecondaryColor = Colors.grey;
 
   // textStyles
   static const TextStyle titleLarge = TextStyle(
@@ -49,5 +51,29 @@ class ThemeInfo {
     unselectedItemColor: Colors.grey,
     unselectedLabelStyle: TextStyle(color: Colors.grey, fontSize: 14),
     type: BottomNavigationBarType.fixed,
+  );
+
+  static ElevatedButtonThemeData elevatedButtonThemeData =
+      ElevatedButtonThemeData(
+    style: ButtonStyle(
+      textStyle: MaterialStateProperty.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.disabled)) {
+            return bodyLarge.copyWith(color: primaryTextColor);
+          } else {
+            return bodyLarge.copyWith(color: tertiaryTextColor);
+          }
+        },
+      ),
+      backgroundColor: MaterialStateColor.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.disabled)) {
+            return contrastSecondaryColor;
+          } else {
+            return contrastColor;
+          }
+        },
+      ),
+    ),
   );
 }

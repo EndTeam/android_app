@@ -4,6 +4,7 @@ import 'package:ma_for_feip/connectivity/connectivity_snackbar.dart';
 import 'package:ma_for_feip/main_page/home_page.dart';
 import 'package:ma_for_feip/products/product_page/product_page.dart';
 import 'package:ma_for_feip/router/routes.dart';
+import 'package:ma_for_feip/sign_up/sign_up_page.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -36,7 +37,7 @@ class AppRouter {
           GoRoute(
             path: '/${AppRoutes.signUp.name}',
             name: AppRoutes.signUp.name,
-            builder: (context, state) => const Placeholder(),
+            builder: (context, state) => const SignUpPage(),
           ),
           GoRoute(
             path: '/${AppRoutes.home.name}',
