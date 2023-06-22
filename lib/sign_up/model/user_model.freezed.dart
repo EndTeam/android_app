@@ -389,18 +389,14 @@ class _$_UserModel implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {@JsonKey(name: 'username')
-          required final String login,
+      {@JsonKey(name: 'username') required final String login,
       @JsonKey(name: 'password', defaultValue: '')
-          required final String password,
-      @JsonKey(name: 'password2', defaultValue: null)
-          final String? repPassword,
-      @JsonKey(name: 'first_name', defaultValue: null)
-          final String? firstname,
-      @JsonKey(name: 'last_name', defaultValue: null)
-          final String? lastname,
+      required final String password,
+      @JsonKey(name: 'password2', defaultValue: null) final String? repPassword,
+      @JsonKey(name: 'first_name', defaultValue: null) final String? firstname,
+      @JsonKey(name: 'last_name', defaultValue: null) final String? lastname,
       @JsonKey(name: 'email', defaultValue: null)
-          final String? email}) = _$_UserModel;
+      final String? email}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
