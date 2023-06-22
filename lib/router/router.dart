@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ma_for_feip/connectivity/connectivity_snackbar.dart';
+import 'package:ma_for_feip/in_catalog.dart';
 import 'package:ma_for_feip/main_page/home_page.dart';
 import 'package:ma_for_feip/products/product_page/product_page.dart';
 import 'package:ma_for_feip/router/routes.dart';
@@ -50,6 +51,15 @@ class AppRouter {
                 path: AppRoutes.cart.name,
                 name: AppRoutes.cart.name,
                 builder: (context, state) => const Placeholder(),
+              ),
+              GoRoute(
+                path: '${AppRoutes.incatalog.name}/:category',
+                name: AppRoutes.incatalog.name,
+                builder: (context, state) {
+                  return InCatalog(
+                    categoryId: int.parse(state.params['category'] ?? '0'),
+                  );
+                },
               ),
               GoRoute(
                 path: AppRoutes.catalog.name,

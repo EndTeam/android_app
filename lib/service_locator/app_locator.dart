@@ -9,6 +9,7 @@ import 'package:ma_for_feip/catalog/repository/category_repository.dart';
 import 'package:ma_for_feip/catalog/service/abstract_category_service.dart';
 import 'package:ma_for_feip/catalog/service/category_service.dart';
 import 'package:ma_for_feip/connectivity/connectivity_provider.dart';
+import 'package:ma_for_feip/in_catalog.dart';
 import 'package:ma_for_feip/products/models/product_model.dart';
 import 'package:ma_for_feip/products/product_page/product_page_state/product_page_state.dart';
 import 'package:ma_for_feip/products/product_page/product_page_notifier.dart';
@@ -60,10 +61,14 @@ class AppLocator extends ServiceLocator {
 
   late final StateNotifierProvider<CartProvider, CartState> cartProvider;
 
+  late final InCatalogDataSource catalogSource;
+
   Future<void> init() async {
     await null;
     _initDio();
     _initCart();
+
+    _initCatalogSource();
 
     _initSignUp();
 
@@ -141,5 +146,9 @@ class AppLocator extends ServiceLocator {
   void _initCart() {
     cartProvider =
         StateNotifierProvider<CartProvider, CartState>((ref) => CartProvider());
+  }
+
+  void _initCatalogSource() {
+    catalogSource = InCatalogDataSource(_dio);
   }
 }

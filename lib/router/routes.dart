@@ -7,7 +7,8 @@ enum AppRoutes {
   catalog('catalog'),
   favorites('favorites'),
   product('product'),
-  profile('profile');
+  profile('profile'),
+  incatalog('inCatalog');
 
   final String routeName;
 
