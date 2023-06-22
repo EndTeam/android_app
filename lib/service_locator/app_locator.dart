@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:ma_for_feip/cart/cart_provider.dart';
+import 'package:ma_for_feip/cart/state/cart_state.dart';
 import 'package:ma_for_feip/catalog/catalog_notifier.dart';
 import 'package:ma_for_feip/catalog/catalog_state/catalog_state.dart';
 import 'package:ma_for_feip/catalog/models/main_category.dart';
@@ -56,9 +58,12 @@ class AppLocator extends ServiceLocator {
   late final FutureProvider<List<ProductModel>> salesProvider;
   late final FutureProvider<List<ProductModel>> newsProvider;
 
+  late final StateNotifierProvider<CartProvider, CartState> cartProvider;
+
   Future<void> init() async {
     await null;
     _initDio();
+    _initCart();
 
     _initSignUp();
 
@@ -131,5 +136,10 @@ class AppLocator extends ServiceLocator {
 
   void _initDio() {
     _dio = Dio(BaseOptions(baseUrl: 'http://192.168.0.102:8000/api/v1'));
+  }
+
+  void _initCart() {
+    cartProvider =
+        StateNotifierProvider<CartProvider, CartState>((ref) => CartProvider());
   }
 }
