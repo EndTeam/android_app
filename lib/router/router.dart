@@ -20,11 +20,13 @@ class AppRouter {
       ShellRoute(
         builder: (BuildContext context, GoRouterState state, Widget child) {
           return Scaffold(
-            body: Stack(
-              children: [
-                child,
-                const ConnectivitySnackBar(),
-              ],
+            body: SafeArea(
+              child: Stack(
+                children: [
+                  child,
+                  const ConnectivitySnackBar(),
+                ],
+              ),
             ),
           );
         },

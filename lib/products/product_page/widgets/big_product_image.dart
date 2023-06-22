@@ -14,7 +14,12 @@ class BigProductImage extends StatelessWidget {
       height: 500,
       child: Stack(
         children: [
-          Image.network(product.images.first),
+          Image.network(
+            product.images.first,
+            width: double.infinity,
+            height: double.infinity,
+            fit: BoxFit.fill,
+          ),
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
