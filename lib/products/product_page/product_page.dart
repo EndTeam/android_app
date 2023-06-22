@@ -15,6 +15,7 @@ import 'package:ma_for_feip/products/product_page/widgets/similar_items.dart';
 import 'package:ma_for_feip/products/product_page/widgets/sizes_bloc.dart';
 import 'package:ma_for_feip/service_locator/app_locator.dart';
 import 'package:ma_for_feip/theme_info.dart';
+import 'package:ma_for_feip/widgets/add_cart_btn.dart';
 
 class ProductPage extends ConsumerWidget {
   final int id;
@@ -66,7 +67,7 @@ class ProductPage extends ConsumerWidget {
               ),
             ),
             const GradientDivider(),
-            const CartButton(),
+            AddCartBtn(productModel: state.product),
             const Divider(height: 1),
             const BottomNav(),
           ],
