@@ -1,7 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ma_for_feip/catalog/models/main_category.dart';
+import 'package:ma_for_feip/router/routes.dart';
 import 'package:ma_for_feip/service_locator/app_locator.dart';
 import 'package:ma_for_feip/theme_info.dart';
 import 'package:skeletons/skeletons.dart';
@@ -23,7 +25,16 @@ class CategoriesGrid extends ConsumerWidget {
           ),
           itemBuilder: (BuildContext context, int index) {
             final category = cats[index];
-            return CategoryItem(category: category);
+            return InkWell(
+                onTap: () {
+                  context.go(
+                    context.namedLocation(
+                      AppRoutes.incatalog.name,
+                      params: {'category': category.id.toString()},
+                    ),
+                  );
+                },
+                child: CategoryItem(category: category));
           },
           itemCount: cats.length,
           shrinkWrap: true,
