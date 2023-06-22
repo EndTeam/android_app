@@ -1,4 +1,6 @@
+import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
+import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:ma_for_feip/catalog/catalog_notifier.dart';
 import 'package:ma_for_feip/catalog/catalog_state/catalog_state.dart';
 import 'package:ma_for_feip/catalog/models/main_category.dart';
@@ -16,6 +18,8 @@ import 'package:ma_for_feip/products/service/abstract_products_service.dart';
 import 'package:ma_for_feip/products/service/product_service.dart';
 import 'package:ma_for_feip/service_locator/service_locator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ma_for_feip/sign_in/state/state.dart';
+import 'package:ma_for_feip/sign_in/state/state_notifier.dart';
 import 'package:ma_for_feip/sign_up/state/state.dart';
 import 'package:ma_for_feip/sign_up/state/state_notifier.dart';
 
@@ -52,15 +56,17 @@ class AppLocator extends ServiceLocator {
 
   @override
   late final StateNotifierProvider<SignUpNotifier, SignUpState> signUpProvider;
+  @override
+  late final StateNotifierProvider<SignInNotifier, SignInState> signInProvider;
 
   late final FutureProvider<List<ProductModel>> salesProvider;
   late final FutureProvider<List<ProductModel>> newsProvider;
 
   Future<void> init() async {
     await null;
-    _initDio();
+    await _initDio();
 
-    _initSignUp();
+    _initSign();
 
     _initCategoryService();
     _initCategoryRepo();
@@ -124,12 +130,17 @@ class AppLocator extends ServiceLocator {
     });
   }
 
-  void _initSignUp() {
+  void _initSign() {
     signUpProvider =
         StateNotifierProvider((ref) => SignUpNotifier(SignUpSource(_dio)));
+    signInProvider =
+        StateNotifierProvider((ref) => SignInNotifier(SignInSource(_dio)));
   }
 
-  void _initDio() {
+  Future<void> _initDio() async {
+    final cookieJar = CookieJar();
     _dio = Dio(BaseOptions(baseUrl: 'http://192.168.0.102:8000/api/v1'));
+    _dio.interceptors.add(CookieManager(cookieJar));
+    await _dio.get('/drf-auth/login/');
   }
 }

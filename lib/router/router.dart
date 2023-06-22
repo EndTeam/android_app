@@ -4,6 +4,7 @@ import 'package:ma_for_feip/connectivity/connectivity_snackbar.dart';
 import 'package:ma_for_feip/main_page/home_page.dart';
 import 'package:ma_for_feip/products/product_page/product_page.dart';
 import 'package:ma_for_feip/router/routes.dart';
+import 'package:ma_for_feip/sign_in/sign_in_page.dart';
 import 'package:ma_for_feip/sign_up/sign_up_page.dart';
 
 class AppRouter {
@@ -15,7 +16,7 @@ class AppRouter {
         name: AppRoutes.splash.name,
         builder: (context, state) => const Placeholder(),
         redirect: (_, __) =>
-            '/${AppRoutes.home.name}', // TODO: remove when splash will be created
+            '/${AppRoutes.signIn.name}', // TODO: remove when splash will be created
       ),
       ShellRoute(
         builder: (BuildContext context, GoRouterState state, Widget child) {
@@ -32,7 +33,7 @@ class AppRouter {
           GoRoute(
             path: '/${AppRoutes.signIn.name}',
             name: AppRoutes.signIn.name,
-            builder: (context, state) => const Placeholder(),
+            builder: (context, state) => const SignInPage(),
           ),
           GoRoute(
             path: '/${AppRoutes.signUp.name}',
