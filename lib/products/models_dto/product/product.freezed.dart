@@ -288,21 +288,17 @@ class _$_ProductModelDTO implements _ProductModelDTO {
       {required this.id,
       required this.name,
       required this.article,
-      @JsonKey(name: 'new')
-          required this.isNew,
-      @JsonKey(name: 'sale')
-          required this.sale,
+      @JsonKey(name: 'new') required this.isNew,
+      @JsonKey(name: 'sale') required this.sale,
       required this.cost,
-      @JsonKey(name: 'sale_cost')
-          this.saleCost,
+      @JsonKey(name: 'sale_cost') this.saleCost,
       @JsonKey(name: 'image_color')
-          required final List<ImageColorDTO> imageColor,
+      required final List<ImageColorDTO> imageColor,
       required final List<NamedSizeDTO> size,
       required this.description,
       required this.brand,
       required this.category,
-      @JsonKey(name: 'is_favorite')
-          required this.isFavorite})
+      @JsonKey(name: 'is_favorite') required this.isFavorite})
       : _imageColor = imageColor,
         _size = size;
 
@@ -417,24 +413,21 @@ class _$_ProductModelDTO implements _ProductModelDTO {
 
 abstract class _ProductModelDTO implements ProductModelDTO {
   const factory _ProductModelDTO(
-      {required final int id,
-      required final String name,
-      required final String article,
-      @JsonKey(name: 'new')
-          required final bool isNew,
-      @JsonKey(name: 'sale')
-          required final bool sale,
-      required final double cost,
-      @JsonKey(name: 'sale_cost')
-          final double? saleCost,
-      @JsonKey(name: 'image_color')
+          {required final int id,
+          required final String name,
+          required final String article,
+          @JsonKey(name: 'new') required final bool isNew,
+          @JsonKey(name: 'sale') required final bool sale,
+          required final double cost,
+          @JsonKey(name: 'sale_cost') final double? saleCost,
+          @JsonKey(name: 'image_color')
           required final List<ImageColorDTO> imageColor,
-      required final List<NamedSizeDTO> size,
-      required final String description,
-      required final BrandDTO brand,
-      required final CategoryDTO category,
-      @JsonKey(name: 'is_favorite')
-          required final bool isFavorite}) = _$_ProductModelDTO;
+          required final List<NamedSizeDTO> size,
+          required final String description,
+          required final BrandDTO brand,
+          required final CategoryDTO category,
+          @JsonKey(name: 'is_favorite') required final bool isFavorite}) =
+      _$_ProductModelDTO;
 
   factory _ProductModelDTO.fromJson(Map<String, dynamic> json) =
       _$_ProductModelDTO.fromJson;
